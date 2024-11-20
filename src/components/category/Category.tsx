@@ -26,7 +26,7 @@ const Category = () => {
                 spaceBetween={30}
                 slidesPerView={6}
                 autoplay={{
-                    delay: 1000,
+                    delay: 2000,
                     disableOnInteraction: false,
                 }}
                 modules={[Autoplay, FreeMode]}
