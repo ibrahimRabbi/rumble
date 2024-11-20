@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactStrictMode: true,
+  images: {
+    domains: ['i.ibb.co.com', 'www.w3.org','i.ibb.co'],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
