@@ -3,39 +3,54 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
-import { EffectFade, Navigation,Autoplay} from 'swiper/modules';
+import { EffectFade, Pagination,Autoplay} from 'swiper/modules';
 import banner1 from '@/assets/banner/winter1.jpeg'
 import banner2 from '@/assets/banner/winter2.jpg'
 import banner3 from '@/assets/banner/winter3.png'
 import Image from 'next/image';
 import Link from 'next/link';
+import BannerCategory from '../category/BannerCategory';
+import style from './banner.module.css'
+import { CSSProperties } from 'react';
 
  const Banner = () => {
     return (
-       
+        <section className={`w-[90%] h-[465px] mx-auto mt-7 grid ${style.banner}`}>
+            <BannerCategory/>
             <Swiper
-                className='h-[430px]'
+               className='w-full h-full'
                 effect={'fade'}
-                navigation={true}
                 spaceBetween={30}
                 slidesPerView={3}
+                pagination={true}
                 centeredSlides={true}
+                
                 autoplay={{
                     delay: 4500,
                     disableOnInteraction: false,
                 }}
-                modules={[EffectFade, Autoplay, Navigation,]}>
+                modules={[EffectFade, Autoplay, Pagination]}
+                style={{
+                    "--swiper-pagination-color": "#FFBA08",
+                    "--swiper-pagination-bullet-inactive-color": "#999999",
+                    "--swiper-pagination-bullet-inactive-opacity": "1",
+                    "--swiper-pagination-bullet-size": "16px",
+                    "--swiper-pagination-bullet-horizontal-gap": "6px"
+                } as CSSProperties}
+            >
                 <SwiperSlide>
-                    <Link href='/'><Image height={500} src={banner1} alt='banner-1' /></Link>
+                    <Link href='/'><Image src={banner1} alt='banner-1' /></Link>
                 </SwiperSlide>
 
                 <SwiperSlide>
-                    <Link href='/'><Image height={500} src={banner3} alt='banner-2' /></Link>
+                    <Link href='/'><Image src={banner3} alt='banner-2' /></Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Link href='/'><Image height={500} src={banner2} alt='banner-2' /></Link>
+                    <Link href='/'><Image src={banner2} alt='banner-2' /></Link>
                 </SwiperSlide>
             </Swiper>
+       </section>
+            
            
         
     );

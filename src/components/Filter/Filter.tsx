@@ -1,5 +1,4 @@
 'use client'
-
 import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
@@ -7,10 +6,20 @@ import { Checkbox } from "../ui/checkbox";
 
  
 
-const Filter = () => {
+const Filter = ({ checkHandler }: { checkHandler :any}) => {
 
     const [openItem, setOpenItem] = useState('item-1');
-
+     
+    const products = [
+        {category:'mens', subCategory: 'T-shirt', name: "Mens T-Shirt" },
+        { category: 'mens', subCategory: 'Jacket',  name: 'Mens Jacket' },
+        { category: 'mens', subCategory: 'hoodie', name: 'Mens Hoodie' },
+        { category: 'mens', subCategory: 'jeans', name: 'Mens Jeans pant' },
+        { category: 'mens', subCategory: 'Full sleeve Shirt', name: 'Mens Full sleeve Shirt' },
+        { category: 'womans', subCategory: 'Crop Top', name: 'Woman Crop Top' },
+        { category: 'womans', subCategory: 'party Grawn', name: 'party Grawn' },
+        { category: 'womans', subCategory: 'kameez', name: 'Kameez and 3pcs set' },
+       ]
 
 
 
@@ -47,54 +56,17 @@ const Filter = () => {
                             <AccordionTrigger className="text-xl font-semibold text-zinc-600">Category</AccordionTrigger>
                             <AccordionContent>
                                 <div className="space-y-5">
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens T-Shirt</label>
-                                    </div>
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens Jeans pant</label>
-                                    </div>
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens Hoodie</label>
-                                    </div>
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens Jacket</label>
-                                    </div>
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens Full sleeve Shirt</label>
-                                    </div>
-
-
-
-
-
-
-
-
-
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Woman Crop Top</label>
-                                    </div>
-
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Mens Full sleeve Shirt</label>
-                                    </div>
-
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">Kameez and 3pcs set</label>
-                                    </div>
-
-                                    <div className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                        <Checkbox id="terms" />
-                                        <label htmlFor="terms">party Grawn</label>
-                                    </div>
+                                    {
+                                        products.map(product => {
+                                            return (
+                                                <div key={Math.random()} className="flex gap-3 items-center text-zinc-700 text-[17px]">
+                                                    <Checkbox onCheckedChange={(isChecked)=>checkHandler(isChecked,product)} id={product.name} />
+                                                    <label htmlFor={product.name}>{product.name}</label>
+                                                </div>
+                                            )
+                                        })
+                                   }
+                                      
                                 </div>    
 
                             </AccordionContent>
@@ -122,7 +94,7 @@ const Filter = () => {
 
 
 
-                        <AccordionItem value="item-3">
+                        <AccordionItem value="item-1">
                             <AccordionTrigger className="text-xl font-semibold text-zinc-600">Color</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
@@ -142,7 +114,7 @@ const Filter = () => {
 
 
 
-                        <AccordionItem value="item-4">
+                        <AccordionItem value="item-1">
                             <AccordionTrigger className="text-xl font-semibold text-zinc-600">Size</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">

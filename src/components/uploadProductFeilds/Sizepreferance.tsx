@@ -11,7 +11,7 @@ const SizePreferance = ({ selectedsize, setSelectedSize }: { selectedsize:any, s
     const [sizes, setSizes] = useState([])
 
     const { formState: { errors } } = useForm()
-
+    
 
     const sizehandler = (value: string) => {
         setSizePreference(value)

@@ -8,6 +8,7 @@ import Spacification from '@/components/uploadProductFeilds/Spacification';
 import Color from '@/components/uploadProductFeilds/Color';
 import SizePreferance from '@/components/uploadProductFeilds/Sizepreferance';
 import Category from '@/components/uploadProductFeilds/Category';
+import { useAddProductMutation } from '@/redux/api/baseApi';
  
 
 
@@ -24,7 +25,7 @@ const UploadProduct = () => {
     const [selectedsize, setSelectedSize] = useState([])
     const [seleteCategory, setSelectCategory] = useState('')
     const [subCategory, setSubCategory] = useState('')
-
+const [addProdcut,{isLoading}] = useAddProductMutation()
  
     const coverImageprocessor = async (file: any) => {
         const formData = new FormData()
@@ -56,16 +57,15 @@ const UploadProduct = () => {
             return img
         })
 
+
         const moreImages = await Promise.all(images);
         const coverPhoto = await coverImageprocessor(value?.coverPhoto[0])
-
-
         const productData = {
             title: value.title,
             price: parseInt(value.price),
             stock: parseInt(value.stock),
-            category: seleteCategory,
-            subCategory: subCategory,
+            category: seleteCategory.toLocaleLowerCase(),
+            subCategory: subCategory.toLocaleLowerCase(),
             coverPhoto: coverPhoto,
             detailPhoto: moreImages,
             colors: color,
@@ -75,13 +75,8 @@ const UploadProduct = () => {
             description: value.description
         }
 
-        const posting = await fetch('http://localhost:5000/api/products/insert-product', {
-            method: 'POST',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(productData)
-            
-        })
-        const response = await posting.json()
+         const response = await addProdcut(productData).unwrap()
+         console.log(response)
         if (response.success) {
             reset()
             setSelectedSize([])
@@ -90,12 +85,16 @@ const UploadProduct = () => {
             setSelectCategory('')
             setSubCategory('')
             toast.success('product has been uploaded successfully')
+        } else {
+            toast.error('something went worng')
         }
  
-
     }
 
 
+    if (isLoading) {
+        return <h1 className='text-xl flex justify-center items-center h-screen'>Loading...</h1>
+    }
 
     return (
         <section>
@@ -107,7 +106,7 @@ const UploadProduct = () => {
 
                     <div>
                         <Input className='border p-2 rounded-md w-full' type='text'
-                            {...register('title', { required: true, maxLength: 30 })} placeholder="Title" />
+                            {...register('title', { required: true, maxLength: 40 })} placeholder="Title" />
                         {errors.title?.type === 'required' && <p className='text-red-500 text-sm'>title is required</p>}
                         {errors.title?.type === 'maxLength' && <p className='text-red-500 text-sm'>title length too long</p>}
                     </div>

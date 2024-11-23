@@ -22,8 +22,8 @@ const HotDeal = () => {
 
 
     return (
-        <section className='mt-20 w-[97%] mx-auto'>
-            <div className='w-[50%]'>
+        <section className='mt-16 w-[97%] mx-auto'>
+            <div className='w-[50%] ml-12'>
                 <p className='text-2xl font-semibold'>Hot Deals</p>
                 <p className='text-sm text-zinc-600'>{description}</p>
             </div>

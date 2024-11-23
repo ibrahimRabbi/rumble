@@ -8,16 +8,16 @@ const Card = ({ data }: { data: any }) => {
      
 
     return (
-        <Link href={`/${_id}`} key={_id} className='border rounded-md h-[290px]'>
+        <Link href={`/${_id}`} key={_id} className='border rounded-md h-[295px]'>
 
             <div className='avatar'>
                 <div className='w-full'>
-                    <Image className='h-[330px] hover:scale-105 duration-150' width={500} height={600} src={coverPhoto} alt='product image' />
+                    <Image priority={true} className='h-[330px] hover:scale-105 duration-150' width={500} height={600} src={coverPhoto} alt='product image' />
                 </div>
             </div>
            
 
-            <div className='p-2 flex justify-between items-center'>
+            <div className='px-2 flex justify-between items-center'>
                 <div>
                     <p className='text-sm'>{title?.slice(0, 20)}<span className='font-bold'>....</span></p>
                     <p className='text-[19px] text-zinc-700 font-semibold'>{price} Tk</p>

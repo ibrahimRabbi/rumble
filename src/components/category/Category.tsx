@@ -9,6 +9,7 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import CategoryCard from './CategoryCard';
 import { category } from '@/utils/Tools';
+import Link from 'next/link';
 
 
 
@@ -35,7 +36,7 @@ const Category = () => {
                     category.map((value) => {
                         return (
                             <SwiperSlide className='mt-3' key={Math.random()}>
-                                <CategoryCard image={value.image} name={value.name} />
+                                <Link href={`/category?name=${value?.name.toLowerCase()}`}> <CategoryCard image={value.image} name={value.name} /></Link>
                             </SwiperSlide>
                         )
                     })
