@@ -1,45 +1,83 @@
 'use client'
 import Filter from '@/components/Filter/Filter';
 import Card from '@/components/ui/Card';
-import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 
+
+
+const page = () => {
+    const searchParams = useSearchParams();
+    const categoryName = searchParams.get('name')
+
+    const [data, setData] = useState([])
+    const [isChecked,setIsChecked] = useState('')
  
+     
 
-const page = async ({ searchParams }: { searchParams: { name: string, subCategory:string } }) => {
-    const categoryName = searchParams?.name 
-     const router = useRouter()
- 
-    const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products?category=${categoryName}&subcategory=${searchParams.subCategory}`)
-    const { response } = await fetchingdata.json()
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/products/get-products?category=${categoryName}`)
+            .then(res => res.json())
+            .then(res => setData(res?.response))
 
-
-
+    }, [categoryName])
 
 
-    const checkHandler = async (isChecked:boolean,value:any) => {
-         
+
+    const checkHandler = async (isChecked: boolean, value: any) => {
         if (isChecked) {
-            router.push(`/category?name=${value.category}&subCategory=${value.subCategory}`)
+            const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
+            const { response } = await fetchingdata.json()
+            setIsChecked(value.name)
+            setData(response)
         }
     }
 
-     
+
+
+    const sorthandler = (value:string) => {
+      
+        if (value === 'High price') {
+            const initalValue = data.sort((a: any, b: any) => b.price - a.price)
+            setData([...initalValue])
+            console.log(initalValue)
+        }
+
+        if (value === 'Low price') {
+            const initalValue = data.sort((a: any, b: any) => a.price - b.price)
+            setData([...initalValue])
+        }
+
+        if (value === 'relevence') {
+            const initalValue = data.sort()
+            setData([...initalValue])
+        }
+
+        if (value === 'relevence') {
+            const initalValue = data.sort((a: any, b: any) => a.createdAt - b.createdAt)
+            setData([...initalValue])
+        }
+
+        if (value === 'new Arrival') {
+            const initalValue = data.reverse()
+            setData([...initalValue])
+        }
+    }
+
+
 
     return (
         <section className='min-h-screen w-[90%] mx-auto my-10'>
             <div className={`flex justify-between items-start`}>
 
-                <div className='w-[25%]'> <Filter checkHandler={checkHandler} /></div>
-                
+                <div className='w-[25%]'> <Filter isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
+
                 <div className='w-[73%] grid grid-cols-4 gap-5'>
-                    
-                        {
-                            response.slice(0, 8).map((data: any) => <Card key={Math.random()} data={data} />)
-                        }
-                  
+                    {
+                        data?.slice(0, 8).map((data: any) => <Card key={Math.random()} data={data} />)
+                    }
                 </div>
             </div>
-           
         </section>
     );
 };

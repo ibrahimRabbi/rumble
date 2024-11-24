@@ -50,11 +50,11 @@ export const colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pi
 
 
 export const categoryData = [
-    { category: 'Womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western', 't-shirt', 'pant', 'watchs', 'bags', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
+    { category: 'womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western', 't-shirt', 'pant', 'watchs', 'bags', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
 
-    { category: 'Mens ', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'Jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'under-wear', 'perfume', 'belt', 'wallet'] },
+    { category: 'mens', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'Jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'under-wear', 'perfume', 'belt', 'wallet'] },
 
-    { category: 'kids ', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'belt'] },
+    { category: 'kids', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'belt'] },
 
     { category: 'Health and Beauty', subCategories: ["Hair Care", "Body Care"] },
 
@@ -81,7 +81,16 @@ export const BannerCategoryData = [
     { icon: gadget, name: 'gadget & devices' },
    ]
 
-
+export const products = [
+    { category: 'mens', subCategory: 'T-shirt', name: "Mens T-Shirt" },
+    { category: 'mens', subCategory: 'Jacket', name: 'Mens Jacket' },
+    { category: 'mens', subCategory: 'hoodie', name: 'Mens Hoodie' },
+    { category: 'mens', subCategory: 'jeans', name: 'Mens Jeans pant' },
+    { category: 'mens', subCategory: 'Full sleeve Shirt', name: 'Mens Full sleeve Shirt' },
+    { category: 'womans', subCategory: 'western', name: 'Woman Crop Top' },
+    { category: 'womans', subCategory: 'party Grawn', name: 'party Grawn' },
+    { category: 'womans', subCategory: 'kameez', name: 'Kameez and 3pcs set' },
+]
 
 
 export const category = [

@@ -7,7 +7,7 @@ import Card from '../ui/Card';
 
 const NewArrival = async () => {
 
-    const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/new-arrival`)
+    const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products?newArrival=${true}&limit=10`)
     const { response } = await fetchingdata.json()
 
 

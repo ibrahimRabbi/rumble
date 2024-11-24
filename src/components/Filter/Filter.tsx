@@ -3,24 +3,12 @@ import { useState } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../ui/accordion";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Checkbox } from "../ui/checkbox";
-
+import { products } from "@/utils/Tools";
  
 
-const Filter = ({ checkHandler }: { checkHandler :any}) => {
+const Filter = ({ checkHandler, sorthandler, isChecked }: { isChecked:any, checkHandler :any, sorthandler:any}) => {
 
     const [openItem, setOpenItem] = useState('item-1');
-     
-    const products = [
-        {category:'mens', subCategory: 'T-shirt', name: "Mens T-Shirt" },
-        { category: 'mens', subCategory: 'Jacket',  name: 'Mens Jacket' },
-        { category: 'mens', subCategory: 'hoodie', name: 'Mens Hoodie' },
-        { category: 'mens', subCategory: 'jeans', name: 'Mens Jeans pant' },
-        { category: 'mens', subCategory: 'Full sleeve Shirt', name: 'Mens Full sleeve Shirt' },
-        { category: 'womans', subCategory: 'Crop Top', name: 'Woman Crop Top' },
-        { category: 'womans', subCategory: 'party Grawn', name: 'party Grawn' },
-        { category: 'womans', subCategory: 'kameez', name: 'Kameez and 3pcs set' },
-       ]
-
 
 
     return (
@@ -28,7 +16,7 @@ const Filter = ({ checkHandler }: { checkHandler :any}) => {
             <div>
                 <p className="text-lg uppercase">Sort by :</p>
 
-                <Select>
+                <Select onValueChange={(value)=>sorthandler(value)}>
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder='Relevance' />
                     </SelectTrigger>
@@ -60,8 +48,12 @@ const Filter = ({ checkHandler }: { checkHandler :any}) => {
                                         products.map(product => {
                                             return (
                                                 <div key={Math.random()} className="flex gap-3 items-center text-zinc-700 text-[17px]">
-                                                    <Checkbox onCheckedChange={(isChecked)=>checkHandler(isChecked,product)} id={product.name} />
-                                                    <label htmlFor={product.name}>{product.name}</label>
+                                                    <Checkbox
+                                                        checked={isChecked === product.name? true : false}
+                                                        onCheckedChange={(isChecked) => checkHandler(isChecked, product)}
+                                                        id={product.name}
+                                                    />
+                                                <label htmlFor={product.name}>{product.name}</label>
                                                 </div>
                                             )
                                         })
@@ -83,6 +75,7 @@ const Filter = ({ checkHandler }: { checkHandler :any}) => {
                                 <div className="flex items-center gap-4">
                                     <p className="bg-slate-200 border-2 text-zinc-900 text-lg px-4 py-2 rounded-md">Male</p>
                                     <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Female</p>
+                                    <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Unisex</p>
                                     <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Others</p>
                                 </div>
                             </AccordionContent>

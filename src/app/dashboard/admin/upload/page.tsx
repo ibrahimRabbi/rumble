@@ -9,20 +9,19 @@ import Color from '@/components/uploadProductFeilds/Color';
 import SizePreferance from '@/components/uploadProductFeilds/Sizepreferance';
 import Category from '@/components/uploadProductFeilds/Category';
 import { useAddProductMutation } from '@/redux/api/baseApi';
- 
-
-
-
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 
 
 
 const UploadProduct = () => {
 
-    const { register,reset, handleSubmit, formState: { errors } } = useForm()
+    const { register, reset, handleSubmit, formState: { errors } } = useForm()
+    const genders = ['male', 'female', 'unisex','trans gender', ]
     const [color, setColor] = useState([])
     const [specifics, setSpecifics] = useState([])
     const [selectedsize, setSelectedSize] = useState([])
+    const [gender, setGender] = useState('')
     const [seleteCategory, setSelectCategory] = useState('')
     const [subCategory, setSubCategory] = useState('')
 const [addProdcut,{isLoading}] = useAddProductMutation()
@@ -64,22 +63,24 @@ const [addProdcut,{isLoading}] = useAddProductMutation()
             title: value.title,
             price: parseInt(value.price),
             stock: parseInt(value.stock),
-            category: seleteCategory.toLocaleLowerCase(),
-            subCategory: subCategory.toLocaleLowerCase(),
+            category: seleteCategory.toLowerCase(),
+            subCategory: subCategory.toLowerCase(),
             coverPhoto: coverPhoto,
             detailPhoto: moreImages,
+            gender: gender,
             colors: color,
             sizes: selectedsize,
             spacifications: specifics,
-            offer: 0,
+            offer: value.offer,
             description: value.description
         }
 
          const response = await addProdcut(productData).unwrap()
-         console.log(response)
+        console.log(response)
         if (response.success) {
             reset()
             setSelectedSize([])
+            setGender('')
             setColor([])
             setSpecifics([])
             setSelectCategory('')
@@ -90,6 +91,9 @@ const [addProdcut,{isLoading}] = useAddProductMutation()
         }
  
     }
+
+
+
 
 
     if (isLoading) {
@@ -123,17 +127,38 @@ const [addProdcut,{isLoading}] = useAddProductMutation()
                         {errors.stock?.type === 'required' && <p className='text-red-500 text-sm'>stock is required</p>}
                     </div>
 
+
+                    <Select onValueChange={(value) => setGender(value)}>
+                        <SelectTrigger className="w-full">
+                            <SelectValue placeholder='select gender' />
+                        </SelectTrigger>
+                        <SelectContent>
+                            {
+                                genders?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                            }
+                        </SelectContent>
+                    </Select>
+
                     <div>
                         <Input className='border p-2 rounded-md w-full' {...register('coverPhoto', { required: true })} placeholder="cover photo" type='file' />
                         {errors.coverPhoto?.type === 'required' && <p className='text-red-500 text-sm'>cover photo is required</p>}
                     </div>
 
+                    
                     <div>
                         <Input className='border p-2 rounded-md w-full' {...register('morePhoto', { required: true })} placeholder="details photos" multiple type='file' />
                         {errors.morePhoto?.type === 'required' && <p className='text-red-500 text-sm'>please add multiple photo</p>}
                     </div>
+                    
                     <Color color={color} setColor={setColor} />
+
+                    <div>
+                        <Input className='border p-2 rounded-md w-full' {...register('offer')} placeholder="offer type"/>
+                    </div>
+
                 </div>
+
+
                 <SizePreferance selectedsize={selectedsize} setSelectedSize={setSelectedSize} />
                 <Category setSubCategory={setSubCategory} seleteCategory={seleteCategory} setSelectCategory={setSelectCategory} />
                 <Spacification specifics={specifics} setSpecifics={setSpecifics} />
