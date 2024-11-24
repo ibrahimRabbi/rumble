@@ -10,7 +10,7 @@ const BannerCategory = () => {
 
 
     return (
-        <div>
+        <div className='lg:flex hidden'>
             <ul className='w-[300px] space-y-1 bg-slate-50 rounded-lg text-zinc-950 text-[17px] lg:z-50 absolute'>
                 {
                     BannerCategoryData.map(v => {

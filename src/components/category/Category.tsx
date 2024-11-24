@@ -18,14 +18,14 @@ import Link from 'next/link';
 const Category = () => {
 
     return (
-        <section className='w-[90%] mx-auto -mt-2'>
+        <section className='w-[90%] mx-auto lg:-mt-2 lg:pt-28 pt-16'>
             <Title title='Shope by Category' description='Find your prefernace Item via category' />
 
             <Swiper
                 className='mt-5'
                 freeMode={true}
                 spaceBetween={30}
-                slidesPerView={6}
+                slidesPerView={window.innerWidth > 470 ? 6 :2}
                 autoplay={{
                     delay: 2000,
                     disableOnInteraction: false,

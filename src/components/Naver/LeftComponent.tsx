@@ -14,8 +14,7 @@ const LeftComponent = () => {
 
 
     return (
-
-        <div className="flex w-[40%] gap-10 items-center justify-end">
+        <div className=" w-[40%] gap-10 hidden lg:flex items-center justify-end">
             <div className="relative w-64">
                 <Input className="w-full" placeholder="search..." />
                 <IoSearch className="absolute top-3 right-2 z-10" />

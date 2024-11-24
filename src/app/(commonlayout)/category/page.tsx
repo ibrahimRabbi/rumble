@@ -64,13 +64,17 @@ const page = () => {
         }
     }
 
+    const genderhandler = (v: string) => {
+console.log(v)
+    }
+
 
 
     return (
         <section className='min-h-screen w-[90%] mx-auto my-10'>
             <div className={`flex justify-between items-start`}>
 
-                <div className='w-[25%]'> <Filter isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
+                <div className='w-[25%]'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
 
                 <div className='w-[73%] grid grid-cols-4 gap-5'>
                     {

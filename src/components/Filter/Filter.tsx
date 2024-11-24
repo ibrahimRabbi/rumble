@@ -6,11 +6,13 @@ import { Checkbox } from "../ui/checkbox";
 import { products } from "@/utils/Tools";
  
 
-const Filter = ({ checkHandler, sorthandler, isChecked }: { isChecked:any, checkHandler :any, sorthandler:any}) => {
+const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChecked: any, checkHandler: any, genderhandler:any, sorthandler:any}) => {
 
     const [openItem, setOpenItem] = useState('item-1');
+    const gender = ['male', 'female', 'unisex', 'trans gender']
+    const [selectedGender,setSelecetedGender] = useState('')
 
-
+    
     return (
         <div className="border p-4">
             <div>
@@ -65,18 +67,20 @@ const Filter = ({ checkHandler, sorthandler, isChecked }: { isChecked:any, check
                         </AccordionItem>
 
 
-
-
-
-
                         <AccordionItem value="item-1">
                             <AccordionTrigger className="text-xl font-semibold text-zinc-600">Gender</AccordionTrigger>
                             <AccordionContent>
-                                <div className="flex items-center gap-4">
-                                    <p className="bg-slate-200 border-2 text-zinc-900 text-lg px-4 py-2 rounded-md">Male</p>
-                                    <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Female</p>
-                                    <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Unisex</p>
-                                    <p className="bg-slate-200 border-2 text-lg py-2 px-4 rounded-md">Others</p>
+                                <div className="flex flex-wrap items-center gap-4">
+                                    {
+                                        gender.map(v => <p
+                                            onClick={() => {
+                                                genderhandler(v)
+                                                setSelecetedGender(v)
+                                            }}
+                                            key={Math.random()}
+                                            className={` ${v === selectedGender ? 'bg-green-200 text-black' :'bg-slate-200'} cursor-pointer border-2 text-zinc-900 text-lg px-4 py-2 rounded-md`}>{v}
+                                        </p>)
+                                    } 
                                 </div>
                             </AccordionContent>
                         </AccordionItem>

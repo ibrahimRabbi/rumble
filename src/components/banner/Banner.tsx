@@ -15,13 +15,13 @@ import { CSSProperties } from 'react';
 
  const Banner = () => {
     return (
-        <section className={`w-[90%] h-[465px] mx-auto mt-7 grid ${style.banner}`}>
+        <section className={`lg:w-[90%] w-[90%] lg:h-[465px] h-[170px] ml-7 lg:mx-auto mt-7 flex lg:grid ${style.banner}`}>
             <BannerCategory/>
             <Swiper
                className='w-full h-full'
                 effect={'fade'}
                 spaceBetween={30}
-                slidesPerView={3}
+                slidesPerView={1}
                 pagination={true}
                 centeredSlides={true}
                 
@@ -34,7 +34,7 @@ import { CSSProperties } from 'react';
                     "--swiper-pagination-color": "#FFBA08",
                     "--swiper-pagination-bullet-inactive-color": "#999999",
                     "--swiper-pagination-bullet-inactive-opacity": "1",
-                    "--swiper-pagination-bullet-size": "16px",
+                    "--swiper-pagination-bullet-size": "10px",
                     "--swiper-pagination-bullet-horizontal-gap": "6px"
                 } as CSSProperties}
             >

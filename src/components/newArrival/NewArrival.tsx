@@ -13,10 +13,10 @@ const NewArrival = async () => {
 
 
     return (
-        <section className='w-[90%] mx-auto mt-20'>
+        <section className='w-[90%] mx-auto lg:mt-20 mt-16'>
             <Title title='New Arrival' description='recent stock and new arrival items' />
 
-            <div className='grid grid-cols-5 gap-10 mt-6'>
+            <div className='grid grid-cols-2 lg:grid-cols-5 gap-10 mt-6'>
                 {
                     response.map((data: any) => <Card key={Math.random()} data={data}/>)
                 }
