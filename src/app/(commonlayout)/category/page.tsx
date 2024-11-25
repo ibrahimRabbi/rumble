@@ -1,8 +1,10 @@
 'use client'
 import Filter from '@/components/Filter/Filter';
 import Card from '@/components/ui/Card';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Rcategory from '@/app/responsive/Rcategory';
 
 
 
@@ -11,9 +13,9 @@ const page = () => {
     const categoryName = searchParams.get('name')
 
     const [data, setData] = useState([])
-    const [isChecked,setIsChecked] = useState('')
- 
-     
+    const [isChecked, setIsChecked] = useState('')
+
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/api/products/get-products?category=${categoryName}`)
@@ -35,8 +37,8 @@ const page = () => {
 
 
 
-    const sorthandler = (value:string) => {
-      
+    const sorthandler = (value: string) => {
+
         if (value === 'High price') {
             const initalValue = data.sort((a: any, b: any) => b.price - a.price)
             setData([...initalValue])
@@ -64,23 +66,30 @@ const page = () => {
         }
     }
 
-    const genderhandler = (v: string) => {
-console.log(v)
+    const genderhandler = async (gender: string) => {
+        console.log(gender)
+        const fetching = await fetch(`http://localhost:5000/api/products/get-products?gender=${gender}`)
+        const { response } = await fetching.json()
+        setData([...response] as any)
     }
 
 
 
+
     return (
-        <section className='min-h-screen w-[90%] mx-auto my-10'>
-            <div className={`flex justify-between items-start`}>
+        <section className='min-h-screen  lg:my-10 my-3'>
+            <Rcategory genderhandler={genderhandler} sorthandler={sorthandler} />
+            <div className={`flex justify-between items-start mt-4 w-[90%] mx-auto`}>
 
-                <div className='w-[25%]'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
-
-                <div className='w-[73%] grid grid-cols-4 gap-5'>
-                    {
-                        data?.slice(0, 8).map((data: any) => <Card key={Math.random()} data={data} />)
-                    }
-                </div>
+                <div className='hidden lg:flex lg:w-[25%]'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
+                 
+                <Suspense fallback={<p className='text-3xl'>Loading....</p>}>
+                    <div className='lg:w-[73%] grid grid-cols-2 lg:grid-cols-4 gap-5'>
+                        {
+                            data?.slice(0, 8).map((data: any) => <Card key={Math.random()} data={data} />)
+                        }
+                    </div>
+                </Suspense>
             </div>
         </section>
     );

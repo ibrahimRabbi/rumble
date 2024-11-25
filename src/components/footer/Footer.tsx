@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <footer className="bg-gray-100 w-full text-gray-800">
 
-            <div className="w-[90$] mx-auto grid grid-cols-4 gap-10 pt-10">
+            <div className="lg:w-[90$] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-10 pt-10">
                 
                 <div className="px-4">
                     <Image src={logo} alt='logo' width={120}/>

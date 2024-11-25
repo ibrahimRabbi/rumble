@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
@@ -8,7 +9,7 @@ const Card = ({ data }: { data: any }) => {
      
 
     return (
-        <Link href={`/${_id}`} key={_id} className='border rounded-md h-[295px]'>
+        <Link href={`/${_id}`} key={_id} className='border rounded-md'>
 
             <div className='avatar'>
                 <div className='w-full'>
@@ -19,7 +20,7 @@ const Card = ({ data }: { data: any }) => {
 
             <div className='px-2 flex justify-between items-center'>
                 <div>
-                    <p className='text-sm'>{title?.slice(0, 20)}<span className='font-bold'>....</span></p>
+                    <p className='text-sm'>{window.innerWidth > 470 ? title?.slice(0, 20) : title?.slice(0, 15) }<span className='font-bold'>....</span></p>
                     <p className='text-[19px] text-zinc-700 font-semibold'>{price} Tk</p>
                 </div>
 

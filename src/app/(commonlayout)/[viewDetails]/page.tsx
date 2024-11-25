@@ -23,7 +23,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
     return (
 
         <section>
-            <div className="w-[90%] lg:gap-16 gap-5 mx-auto mt-10 pb-20 grid lg:grid-cols-2 grid-cols-1">
+            <div className="lg:w-[90%] w-[95%] lg:gap-16 gap-5 mx-auto mt-10 pb-20 grid lg:grid-cols-2 grid-cols-1">
 
                 <ImageGallry coverPhoto={response?.coverPhoto} detailPhoto={response?.detailPhoto} />
                 <div className='mt-5'>
@@ -45,7 +45,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                         </ul>
                     </div>
                     
-                    <div className="flex lg:mt-10 mt-5 justify-between items-center pr-12">
+                    <div className="flex lg:mt-10 mt-5 justify-between items-center lg:pr-12">
                         <p className="text font-semibold text-2xl text-[#613d26]">
                             {response?.price}-TK
                         </p>

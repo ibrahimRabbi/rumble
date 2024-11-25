@@ -40,7 +40,7 @@ const AddToCartBtn = ({ id, stock }: { id: string, stock:number }) => {
             if (added.success) {
                 toast.success('item added successfully')
                 dispatch(resetQuantity(1))
-                router.push('/showAll')
+                router.push('/category')
             } else {
                 toast.error(added?.message)
             }

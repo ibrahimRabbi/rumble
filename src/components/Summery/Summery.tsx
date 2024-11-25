@@ -58,7 +58,7 @@ const Summery = () => {
                     </span>
                 </div>
                 <div className="divider"></div>
-                <p className="text-[21px] text-gray-900 font-semibold rounded-lg">Sub Total : {subTotal}-TK</p>
+                <p className="text-[21px] text-gray-900 font-semibold rounded-lg">Sub Total : {subTotal}৳</p>
                 <Link href='/shipping-address' className={`btn bg-amber-400 hover:bg-amber-500 mt-18 block p-4 text-center font-semibold text-zinc-900 text-[16px] rounded-lg w-full ${data?.response <= 0 ? 'btn-disabled' : 'enabled:'}`}>Procced To Checkout</Link>
             </div>
         </div>
