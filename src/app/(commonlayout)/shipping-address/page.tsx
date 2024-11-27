@@ -15,7 +15,7 @@ import visaCard from '@/assets/payment/visa-removebg-preview.png'
 import { useAppDispatch } from '@/redux/hook';
 import { changeDelivaryChrg } from '@/redux/features/shippingSlice';
 import { Checkbox } from '@/components/ui/checkbox';
-import RprocedToCheck from '@/app/responsive/RprocedToCheck';
+import RprocedToPay from '@/components/responsive/RprocedToPay';
 
 
 
@@ -69,20 +69,21 @@ const page = () => {
 
 
     return (
-        <section className='lg:w-[90%] w-[95%] mx-auto lg:my-8'>
+        <section className='lg:w-[90%] mx-auto lg:my-8'>
             {/* responsive */}
-            <RprocedToCheck redirect='/payment' title='Procced To Pay' />
-            <p className='text-[#493115] text-xl lg:mt-0 mt-8 font-semibold'>Choose a shipping Address & Details</p>
+            <RprocedToPay shippingDetails={details as DeliverAddress} />
+
+            <p className='text-[#493115] text-lg lg:mt-0 mt-8 font-semibold lg:text-start text-center'>Choose a shipping Address & Details</p>
 
             <div className='flex justify-between items-start mt-4'>
-                <div className='lg:w-[68%]'>
+                <div className='lg:w-[68%] w-full'>
 
-                    <div className='w-full lg:border lg:p-5 rounded-md'>
+                    <div className='lg:w-full w-[95%] mx-auto lg:border lg:p-5 rounded-md'>
 
                         <div className='hidden lg:block'>
                             <div className='flex justify-between items-center'>
-                                <p className='text-xl font-semibold'>Your Details</p>
-                                <Link href='/' className='text-sky-700 font-semibold'>Shipping to more than one address?</Link>
+                                <p className='text-lg font-semibold'>Your Details</p>
+                                <Link href='/' className='text-sky-700 font-semibold block'>Shipping to more than one address?</Link>
                             </div>
                             <hr className='mt-1' />
                         </div>
@@ -91,32 +92,29 @@ const page = () => {
                             {
                                 user?.response?.deliverAddress?.map((v: DeliverAddress) => {
                                     return (
-                                        window.innerWidth > 470 ? <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
-                                            <div className='flex items-center gap-2'>
-                                                <Checkbox onCheckedChange={() => pickDetails(v)} />
+                                        window.innerWidth > 470 ?
+                                            <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
+                                                <div className='flex items-center gap-2'>
+                                                    <Checkbox onCheckedChange={() => pickDetails(v)} />
 
-                                                <p className='font-semibold'>{v?.name}</p>
-                                                <p className=''>{v?.phone}</p>
+                                                    <p className='font-semibold'>{v?.name}</p>
+                                                    <p className=''>{v?.phone}</p>
 
-                                                <p className='lg:pl-4'>{v?.address}, <span>{v?.district}</span></p>
-                                            </div>
-                                            <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
-                                        </div> :
-                                            <div key={Math.random()} className=' bg-green-100 w-full p-2 flex items-center gap-4'>
+                                                    <p className='lg:pl-4'>{v?.address}, <span>{v?.district}</span></p>
+                                                </div>
+                                                <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
+                                            </div> :
+                                            <div key={Math.random()} className='min-w-full flex justify-between gap-2 items-center p-2 bg-green-100 bordre rounded-md'>
                                                 <Checkbox onCheckedChange={() => pickDetails(v)} />
-                                                <div>
-                                                    <div className='flex justify-between items-center'>
-                                                        <div className='flex gap-2 items-center'>
-                                                            <p className='font-semibold'>{v?.name}</p>
-                                                            <p className=''>{v?.phone}</p>
-                                                        </div>
-                                                        <button onClick={() => deleteHandler(v)} className='text-sky-600 ml-16 underline'>Delete</button>
+                                                <div className='flex w-full gap-2 items-center'>
+                                                    <div className='flex w-full gap-2 items-center'>
+                                                        <p className='text-nowrap'>{v?.name}</p>
+                                                        <span>{v?.phone}</span>
+                                                        <span>{v.address}, {v.district}</span>  
                                                     </div>
-                                                    <p className='text-zinc-700'>{v?.address}, <span>{v?.district}</span></p>
+                                                    <button onClick={() => deleteHandler(v)} className='text-sky-600 underline '>Delete</button>
                                                 </div>
                                             </div>
-
-
 
                                     )
                                 })
@@ -133,7 +131,7 @@ const page = () => {
                     </div>
 
 
-                    <div className='flex justify-center items-center gap-2 mt-10'>
+                    <div className='flex justify-center items-center gap-2 my-10'>
                         <p className='font-semibold text-zinc-700'>We Are Accept :</p>
                         <div className='flex justify-center gap-5 items-center'>
                             <Image width={30} src={bekash} alt='bekash' />
@@ -144,9 +142,6 @@ const page = () => {
                     </div>
 
                 </div>
-
-
-
 
 
                 <div className='hidden lg:block lg:w-[28%] border'>

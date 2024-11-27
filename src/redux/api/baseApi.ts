@@ -36,6 +36,14 @@ export const baseApi = createApi({
             }
         }),
 
+        getHotProduct: builder.query({
+            query: () => {
+                return {
+                    url: `products/get-products?deal='true'&limit=20`
+                }
+            }
+        }),
+
         addToCart: builder.mutation({
             query: (payload: Tcart) => {
                 return {
@@ -122,4 +130,4 @@ export const baseApi = createApi({
 })
 
 
-export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation } = baseApi
+export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery } = baseApi

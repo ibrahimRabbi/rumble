@@ -16,7 +16,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
     return (
         <div className="border p-4">
             <div>
-                <p className="text-lg uppercase">Sort by :</p>
+                <p className="text-[16px] uppercase">Sort by :</p>
 
                 <Select onValueChange={(value)=>sorthandler(value)}>
                     <SelectTrigger className="w-full">
@@ -34,7 +34,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
                 <div className="mt-8">
                     <div>
-                        <p className="text-xl uppercase">Filters</p>
+                        <p className="text-[1.100rem] uppercase">Filters</p>
                         <p className="text-sm text-zinc-500">500+ Products</p>
                     </div>
                     <hr className="mt-4" />
@@ -43,7 +43,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
 
                         <AccordionItem value="item-1">
-                            <AccordionTrigger className="text-xl font-semibold text-zinc-600">Category</AccordionTrigger>
+                            <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Category</AccordionTrigger>
                             <AccordionContent>
                                 <div className="space-y-5">
                                     {
@@ -68,7 +68,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
 
                         <AccordionItem value="item-1">
-                            <AccordionTrigger className="text-xl font-semibold text-zinc-600">Gender</AccordionTrigger>
+                            <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Gender</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
                                     {
@@ -78,7 +78,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                                                 setSelecetedGender(v)
                                             }}
                                             key={Math.random()}
-                                            className={` ${v === selectedGender ? 'bg-green-200 text-black' :'bg-slate-200'} cursor-pointer border-2 text-zinc-900 text-lg px-4 py-2 rounded-md`}>{v}
+                                            className={` ${v === selectedGender ? 'bg-green-200 text-black' :'bg-slate-200'} cursor-pointer border-2 text-zinc-900 text-[16px] px-4 py-2 rounded-md`}>{v}
                                         </p>)
                                     } 
                                 </div>
@@ -92,7 +92,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
 
                         <AccordionItem value="item-1">
-                            <AccordionTrigger className="text-xl font-semibold text-zinc-600">Color</AccordionTrigger>
+                            <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Color</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
                                     <div className="bg-zinc-950 py-4 px-5 border rounded-lg" > </div>
@@ -112,7 +112,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
 
                         <AccordionItem value="item-1">
-                            <AccordionTrigger className="text-xl font-semibold text-zinc-600">Size</AccordionTrigger>
+                            <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Size</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
                                     <p className="bg-slate-300 py-2 px-4 rounded-md font-semibold text-slate-700">S</p>

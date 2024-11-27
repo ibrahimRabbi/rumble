@@ -26,6 +26,10 @@ const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress })
         }
     }
 
+
+
+    
+
     return (
         <div className='h-[430px] lg:sticky p-5 top-28'>
             <h1 className='text-center text-[20px] font-semibold'>Shopping Summery</h1>

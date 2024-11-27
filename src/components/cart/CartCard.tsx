@@ -62,28 +62,28 @@ const CartCard = ({ data }: { data: any }) => {
 
                 <div className=''>
 
-                    <span className={`${window.innerWidth > 470 ? 'text-xl' : 'text-[16px]'} text lg:font-semibold lg:text-zinc-800`}>{data?.productId?.title}</span>
+                    <span className={`text-[1.0rem] text lg:font-semibold lg:text-zinc-800`}>{data?.productId?.title}</span>
 
                     {/* responsive */}
-                    <p className="lg:hidden flex text-lg font-semibold mt-1">৳{totalAmount}</p>
+                    <p className="lg:hidden flex text-[1.0rem] font-semibold mt-1">৳{totalAmount}</p>
 
                     <div className='flex items-center lg:mt-5 mt-2 gap-10'>
 
                         <div>
-                            <span className='text-[17px] font-semibold text-zinc-700'>Size : </span>
-                            <span className='lg:border lg:py-2 lg:px-3 rounded-md lg:bg-zinc-300'>{data?.size}</span>
+                            <span className='text-[0.900rem] font-semibold text-zinc-700'>Size : </span>
+                            <span className='lg:border text-[0.940rem] lg:py-2 lg:px-3 rounded-md lg:bg-zinc-300'>{data?.size}</span>
                         </div>
 
                         <div className='flex gap-1 items-center -m-1'>
-                            <span className='text-[17px] font-semibold text-zinc-700'>color :</span>
-                            <span className='lg:border lg:p-2 lg:bg-green-100 rounded-sm'>{data?.color}</span>
+                            <span className='text-[0.900rem] font-semibold text-zinc-700'>color :</span>
+                            <span className='lg:border lg:p-2 text-[0.940rem] lg:bg-green-100 rounded-sm'>{data?.color}</span>
                         </div>
 
                     </div>
 
                     <div className='flex justify-between items-end'>
                         <div>
-                            <p className='font-semibold text-[16px] mt-5 text-zinc-700'>Quantity:</p>
+                            <p className='font-semibold text-[0.940rem] mt-5 text-zinc-700'>Quantity:</p>
                             <div className='flex justify-between border border-green-200 items-center w-28 px-3 bg-white rounded-md'>
                                 <button onClick={decrementHandler} className=' text-lg font-bold'>-</button>
                                 <p className=''>{quantity}</p>

@@ -36,7 +36,7 @@ const Category = () => {
                     category.map((value) => {
                         return (
                             <SwiperSlide className='mt-3' key={Math.random()}>
-                                <Link href={`/category?name=${value?.name.toLowerCase()}`}> <CategoryCard image={value.image} name={value.name} /></Link>
+                                <Link href={`products/category?value=${value?.name.toLowerCase()}`}> <CategoryCard image={value.image} name={value.name} /></Link>
                             </SwiperSlide>
                         )
                     })

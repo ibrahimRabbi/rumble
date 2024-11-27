@@ -15,7 +15,7 @@ const BannerCategory = () => {
                 {
                     BannerCategoryData.map(v => {
                         return (
-                            <Link key={Math.random()} href={{ pathname: `/category/` ,query:{name:v.name.toLowerCase().toString()}}}>
+                            <Link key={Math.random()} href={{ pathname: `/products/category/` ,query:{value:v.name.toLowerCase().toString()}}}>
                                 <li className='bg-slate-50 hover:bg-green-100 flex justify-start items-center gap-2 p-2' key={Math.random()}>
                                     <Image src={v.icon} alt='icons' width={30}/>
                                     <p>{v.name}</p>

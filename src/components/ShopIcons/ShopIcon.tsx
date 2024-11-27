@@ -89,10 +89,10 @@ const ShopIcon = () => {
             </div>
             
             <div className={`flex justify-between items-start mt-2 lg:mt-6`}>
-                <div className='lg:w-[25%] hidden lg:flex'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
+                <div className='lg:w-[25%] hidden lg:block'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
                 
                 <Suspense fallback={<p className='text-3xl'>Loading....</p>}>
-                    <div className='lg:w-[73%] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8'>
+                    <div className='lg:w-[70%] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8'>
                         {
                             data?.map((data: any) => <Card key={Math.random()} data={data} />)
                         }

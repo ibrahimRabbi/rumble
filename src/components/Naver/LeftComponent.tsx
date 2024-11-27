@@ -4,19 +4,24 @@ import { IoSearch } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import cartData from "../../lib/cartData";
+import { useRouter } from "next/navigation";
 
 
 
 const LeftComponent = () => {
 
     const { totalQuantity } = cartData()
+    const router = useRouter()
 
+    const searchHandler = (value:any) => {
+        router.push(`/products/search?value=${value.target.value}`)
+    }
 
 
     return (
         <div className=" w-[40%] gap-10 hidden lg:flex items-center justify-end">
             <div className="relative w-64">
-                <Input className="w-full" placeholder="search..." />
+                <Input onChange={searchHandler} className="w-full" placeholder="search..." />
                 <IoSearch className="absolute top-3 right-2 z-10" />
             </div>
 
