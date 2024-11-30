@@ -34,6 +34,7 @@ const page = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [details, setDetails] = useState({})
+    const [isChecked,setChecked] = useState(false)
     const { data: user, isLoading } = useGetUserQuery({})
     const [deleteaddress, { }] = useDeleteAddressMutation()
     const dispatch = useAppDispatch()
@@ -41,13 +42,16 @@ const page = () => {
 
 
 
-    const pickDetails = (details: DeliverAddress) => {
-        setDetails(details)
+    const pickDetails = (details: DeliverAddress, checked:boolean) => {
+        if (checked) {
+            setDetails(details)
+            setChecked(checked)
 
-        if (details.district.toLowerCase() !== 'dhaka') {
-            dispatch(changeDelivaryChrg(120))
-        } else {
-            dispatch(changeDelivaryChrg(70))
+            if (details.district.toLowerCase() !== 'dhaka') {
+                dispatch(changeDelivaryChrg(120))
+            } else {
+                dispatch(changeDelivaryChrg(70))
+            }
         }
     }
 
@@ -69,7 +73,7 @@ const page = () => {
 
 
     return (
-        <section className='lg:w-[90%] mx-auto lg:my-8'>
+        <section className='lg:w-[90%] min-h-screen mx-auto lg:my-8'>
             {/* responsive */}
             <RprocedToPay shippingDetails={details as DeliverAddress} />
 
@@ -95,7 +99,7 @@ const page = () => {
                                         window.innerWidth > 470 ?
                                             <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
                                                 <div className='flex items-center gap-2'>
-                                                    <Checkbox onCheckedChange={() => pickDetails(v)} />
+                                                    <Checkbox checked={isChecked} onCheckedChange={(checked) => pickDetails(v, checked as boolean)}/>
 
                                                     <p className='font-semibold'>{v?.name}</p>
                                                     <p className=''>{v?.phone}</p>
@@ -105,7 +109,7 @@ const page = () => {
                                                 <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
                                             </div> :
                                             <div key={Math.random()} className='min-w-full flex justify-between gap-2 items-center p-2 bg-green-100 bordre rounded-md'>
-                                                <Checkbox onCheckedChange={() => pickDetails(v)} />
+                                                <Checkbox onCheckedChange={(chacked) => pickDetails(v,chacked as boolean)}/>
                                                 <div className='flex w-full gap-2 items-center'>
                                                     <div className='flex w-full gap-2 items-center'>
                                                         <p className='text-nowrap'>{v?.name}</p>
@@ -131,7 +135,7 @@ const page = () => {
                     </div>
 
 
-                    <div className='flex justify-center items-center gap-2 my-10'>
+                    <div className='flex justify-center items-center gap-2 lg:my-10 mt-20'>
                         <p className='font-semibold text-zinc-700'>We Are Accept :</p>
                         <div className='flex justify-center gap-5 items-center'>
                             <Image width={30} src={bekash} alt='bekash' />

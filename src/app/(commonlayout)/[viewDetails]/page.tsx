@@ -28,7 +28,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                 <ImageGallry coverPhoto={response?.coverPhoto} detailPhoto={response?.detailPhoto} />
                 <div className='mt-5'>
                     <p className="text font-semibold text-2xl text-zinc-700">{response?.title}</p>
-                    <p className="font-semibold mt-2 text-zinc-500 text-sm">{response?.description}</p>
+                    <p className="mt-2 text-zinc-500 text-[0.825rem]">{response?.description}</p>
                     <div className='flex mt-7 items-center justify-between'>
                         <Increment />
                         <p className='font-semibold mt-5 text-[17px] text-zinc-700'>Available Stock- {response?.stock > 0 ? response?.stock : <span className='text-red-600'>Sold Out</span>}</p>

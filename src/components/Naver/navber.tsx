@@ -14,11 +14,11 @@ const Navber = () => {
 
 
     return (
-        <nav className="w-full py-2 lg:mt-0 lg:bg-slate-50">
+        <nav className="w-full lg:py-0 py-2 lg:bg-slate-50">
             <Heading />
 
 
-            <div className="lg:w-[90%] w-[95%] py-2 mx-auto flex justify-between items-center">
+            <div className="lg:w-[90%] w-[95%] py-1 mx-auto flex justify-between items-center">
 
                 <Link href='/'><Image width={130} src={logo} alt="logo" /></Link>
                 <MiddleComponent />

@@ -106,7 +106,7 @@ const page = () => {
                 <Suspense fallback={<p className='text-3xl'>Loading....</p>}>
                     {
                         data?.length < 1 ?
-                            <div className='lg:w-[72%] mt-28 items-center flex justify-center flex-col gap-2'>
+                            <div className='lg:w-[72%] w-[95%] mt-28 items-center flex justify-center flex-col gap-2'>
                             <div className='text-xl flex font-semibold text-zinc-800'>did not find products <span> ☹️</span></div>
                             <Link href='/products/search' className='bg-green-400 p-2 rounded-md border hover:bg-green-500 font-semibold text-zinc-800'>See All</Link>
                         </div> :

@@ -1,6 +1,6 @@
 'use client'
 import { FaTrashAlt } from 'react-icons/fa';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDeleteCartMutation } from '@/redux/api/baseApi';
 import toast from 'react-hot-toast';
 // import { useRouter } from 'next/navigation';
@@ -9,12 +9,27 @@ import cartData from '../../lib/cartData';
 
 const CartCard = ({ data }: { data: any }) => {
 
-    //const router = useRouter()
+     
     const [quantity, setQuantity] = useState(data?.quantity as number)
     const [deleteCart, { isLoading }] = useDeleteCartMutation()
     const { refetch } = cartData()
     const totalAmount = data?.productId?.price * quantity
+    
 
+    useEffect(() => {
+        fetch(`http://localhost:5000/api/cart/update-cart/${data?._id}`, {
+            method: 'PATCH',
+            headers: { 'content-type': 'application/json' },
+            body : JSON.stringify({quantity})
+        })
+            .then(res => res.json())
+            .then(res => {
+                if (res.success) {
+                     refetch()
+                 }
+        })
+    }, [quantity])
+    
 
     const incrementHandler = () => {
         setQuantity(prev => {

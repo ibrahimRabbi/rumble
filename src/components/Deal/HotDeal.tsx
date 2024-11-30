@@ -48,18 +48,20 @@ const HotDeal = () => {
                         data?.response?.map((v: any) => {
                             return (
                                 <SwiperSlide key={v?._id}>
-                                    <div
-                                        style={{ backgroundImage: `url(${v?.coverPhoto})`, height: '300px' }}
-                                        className={`bgImage flex flex-col rounded-md justify-between border items-end h-[300px]`}
-                                    >
-                                        <p className='p-2'>
-                                            <div className="bg-purple-400 text-[20px] p-1 rounded-lg">{v?.offer}</div>
-                                        </p>
-                                        <div className={`glassmorphisom w-full py-4 px-2 flex justify-between items-center`}>
-                                            <p className={`text-zinc-950 text-sm font-semibold`}>{v?.title?.slice(0, 15)}...</p>
-                                            <Link className='text-zinc-950 text-sm  font-bold flex items-center gap-1' href='/'><FaRegEye />View Item </Link>
+                                    <Link href={`/${v._id}`}>
+                                        <div
+                                            style={{ backgroundImage: `url(${v?.coverPhoto})`, height: '280px' }}
+                                            className={`bgImage flex flex-col rounded-md justify-between border items-end h-[300px]`}
+                                        >
+                                            <p className='p-2'>
+                                                <div className="bg-purple-400 text-[20px] p-1 rounded-lg">{v?.offer}</div>
+                                            </p>
+                                            <div className={`glassmorphisom w-full py-4 px-2 flex justify-between items-center`}>
+                                                <p className={`text-zinc-950 text-sm font-semibold`}>{v?.title?.slice(0, 15)}...</p>
+                                                <Link className='text-green-900 text-sm  font-bold flex items-center gap-1' href='/'><FaRegEye />View Item </Link>
+                                            </div>
                                         </div>
-                                    </div>
+                                    </Link>
 
                                 </SwiperSlide>
                             )

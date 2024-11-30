@@ -13,7 +13,7 @@ export const baseApi = createApi({
             headers.set('authorization', token as string)
         }
     }),
-    tagTypes: ['product','cart', 'auth'],
+    tagTypes: ['product','cart', 'auth','order'],
     endpoints: (builder) => ({
 
 
@@ -124,10 +124,29 @@ export const baseApi = createApi({
                 }
             },
             invalidatesTags: ['auth']
-        })
+        }),
+        createOrder: builder.mutation({
+            query: (payload) => {
+                return {
+                    url: '/order/create-order',
+                    method: 'POST',
+                    body : payload
+                }
+            },
+            invalidatesTags : ['order']
+        }),
+        getOrder: builder.query({
+            query: () => {
+                return {
+                    url: '/order/get-order',
+                }
+            },
+            providesTags : ['order']
+        }),
+         
 
     }),
 })
 
 
-export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery } = baseApi
+export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery,useCreateOrderMutation,useGetOrderQuery } = baseApi

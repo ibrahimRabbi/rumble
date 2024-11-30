@@ -10,12 +10,12 @@ const OrderSuccess = () => {
                     <Image width={90} src={basket} alt="order success" />
                 </div>
                 <h2 className="mt-4 text-[24px] font-semibold text-gray-800">
-                  Thank you for your purchess
+                  Thanks for choosing rumble
                 </h2>
                 <p className="mt-2 text-gray-600">
                     Your order has been placed successfully.{" "}
                     <Link
-                        href="#"
+                        href="/dashboard/user"
                         className="text-green-600 hover:underline"
                     >
                         Order History
@@ -26,10 +26,10 @@ const OrderSuccess = () => {
                 </p>
                 
                 <div className="flex justify-center items-center gap-2">
-                    <button className="px-4 py-2 mt-6 text-white bg-green-600 rounded hover:bg-green-700">
+                    <Link href='/dashboard/user/order' className="px-4 py-2 mt-6 text-white bg-green-600 rounded hover:bg-green-700">
                         view order status
-                    </button>
-                    <Link href='/category' className="px-4 py-2 mt-6 text-white bg-green-600 rounded hover:bg-green-700">
+                    </Link>
+                    <Link href='products/category' className="px-4 py-2 mt-6 text-white bg-green-600 rounded hover:bg-green-700">
                         Continue Shopping
                     </Link>
                 </div>

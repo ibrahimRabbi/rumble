@@ -14,7 +14,7 @@ const Rsearch = () => {
 
 
     return (
-        <div className="lg:hidden block relative w-[95%] mx-auto mt-2 ">
+        <div className="lg:hidden block relative w-[95%] mx-auto mt-5">
             <Input onChange={searchHandler} className="w-full" placeholder="search..." />
             <IoSearch className="absolute top-3 right-2 z-10" />
         </div>

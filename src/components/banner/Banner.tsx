@@ -31,7 +31,7 @@ import { CSSProperties } from 'react';
                 }}
                 modules={[EffectFade, Autoplay, Pagination]}
                 style={{
-                    "--swiper-pagination-color": "#FFBA08",
+                    "--swiper-pagination-color": "#0e8726",
                     "--swiper-pagination-bullet-inactive-color": "#999999",
                     "--swiper-pagination-bullet-inactive-opacity": "1",
                     "--swiper-pagination-bullet-size": "10px",

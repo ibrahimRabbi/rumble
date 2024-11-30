@@ -17,10 +17,10 @@ const cartData = () => {
     let discount = 0;
     let subTotal = 0
     let vat = 0
-    
-    
-   
-    
+
+
+
+
 
     data?.response?.forEach((v: Tcart) => {
         totalQuantity += v.quantity
@@ -28,12 +28,12 @@ const cartData = () => {
     })
 
     if (amount > 0) {
-        subTotal = (amount+delivaryCharge) - discount
+        subTotal = (amount + delivaryCharge) - discount
     }
 
 
 
-    return { data, refetch, isLoading, totalQuantity,amount,discount,subTotal,delivaryCharge,vat }
+    return { data, refetch, isLoading, totalQuantity, amount, discount, subTotal, delivaryCharge, vat }
 
 };
 
