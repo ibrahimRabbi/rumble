@@ -27,7 +27,7 @@ const AddToCartBtn = ({ id, stock }: { id: string, stock:number }) => {
 
     const addToCartHandler = async () => {
         if (!user.success) {
-            toast.error('unauthorized user please login here',{duration:4000})
+            toast.error('unauthorized user please login',{duration:4000})
             router.push('/auth/sign-in')
         } else {
             const data: Tcart = {

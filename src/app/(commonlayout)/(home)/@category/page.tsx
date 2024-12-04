@@ -1,15 +1,13 @@
 "use client"
-
-import React from 'react';
-import Title from '../ui/Title';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
-import CategoryCard from './CategoryCard';
 import { category } from '@/utils/Tools';
 import Link from 'next/link';
+import CategoryCard from '@/components/category/CategoryCard';
+import Title from '@/components/ui/Title';
 
 
 
@@ -25,7 +23,7 @@ const Category = () => {
                 className='mt-5'
                 freeMode={true}
                 spaceBetween={30}
-                slidesPerView={window.innerWidth > 470 ? 6 :2}
+                slidesPerView={window.innerWidth > 470 ? 6 : 2}
                 autoplay={{
                     delay: 2000,
                     disableOnInteraction: false,
@@ -40,7 +38,7 @@ const Category = () => {
                             </SwiperSlide>
                         )
                     })
-                }      
+                }
             </Swiper>
 
 

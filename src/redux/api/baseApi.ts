@@ -1,5 +1,6 @@
 import { Tcart } from '@/components/cart/AddToCartBtn'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { getCookie } from 'cookies-next/client'
 
 
 
@@ -9,7 +10,7 @@ export const baseApi = createApi({
         baseUrl: `http://localhost:5000/api`,
         credentials: 'include',
         prepareHeaders: (headers) => {
-            const token = localStorage.getItem('accessToken')
+            const token = getCookie('accessToken')
             headers.set('authorization', token as string)
         }
     }),

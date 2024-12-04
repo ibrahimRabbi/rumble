@@ -1,7 +1,6 @@
 'use client'
 import AddDetailsDialog from '@/components/addDetailsDialog/AddDetailsDialog';
 import ShippingSummery from '@/components/Summery/ShippingSummery';
-import { Button } from '@/components/ui/button';
 import { useDeleteAddressMutation, useGetUserQuery } from '@/redux/api/baseApi';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -21,6 +20,7 @@ import RprocedToPay from '@/components/responsive/RprocedToPay';
 
 
 
+
 export type DeliverAddress = {
     name: string,
     phone: string,
@@ -34,15 +34,15 @@ const page = () => {
 
     const [isOpen, setIsOpen] = useState(false)
     const [details, setDetails] = useState({})
-    const [isChecked,setChecked] = useState(false)
-    const { data: user, isLoading } = useGetUserQuery({})
+    const [isChecked, setChecked] = useState(false)
     const [deleteaddress, { }] = useDeleteAddressMutation()
     const dispatch = useAppDispatch()
+    const { data: user } = useGetUserQuery({})
+    
 
 
 
-
-    const pickDetails = (details: DeliverAddress, checked:boolean) => {
+    const pickDetails = (details: DeliverAddress, checked: boolean) => {
         if (checked) {
             setDetails(details)
             setChecked(checked)
@@ -99,7 +99,7 @@ const page = () => {
                                         window.innerWidth > 470 ?
                                             <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
                                                 <div className='flex items-center gap-2'>
-                                                    <Checkbox checked={isChecked} onCheckedChange={(checked) => pickDetails(v, checked as boolean)}/>
+                                                    <Checkbox checked={isChecked} onCheckedChange={(checked) => pickDetails(v, checked as boolean)} />
 
                                                     <p className='font-semibold'>{v?.name}</p>
                                                     <p className=''>{v?.phone}</p>
@@ -109,12 +109,12 @@ const page = () => {
                                                 <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
                                             </div> :
                                             <div key={Math.random()} className='min-w-full flex justify-between gap-2 items-center p-2 bg-green-100 bordre rounded-md'>
-                                                <Checkbox onCheckedChange={(chacked) => pickDetails(v,chacked as boolean)}/>
+                                                <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
                                                 <div className='flex w-full gap-2 items-center'>
                                                     <div className='flex w-full gap-2 items-center'>
                                                         <p className='text-nowrap'>{v?.name}</p>
                                                         <span>{v?.phone}</span>
-                                                        <span>{v.address}, {v.district}</span>  
+                                                        <span>{v.address}, {v.district}</span>
                                                     </div>
                                                     <button onClick={() => deleteHandler(v)} className='text-sky-600 underline '>Delete</button>
                                                 </div>

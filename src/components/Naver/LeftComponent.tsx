@@ -5,13 +5,18 @@ import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
 import cartData from "../../lib/cartData";
 import { useRouter } from "next/navigation";
+import { useGetUserQuery } from "@/redux/api/baseApi";
 
 
 
 const LeftComponent = () => {
 
     const { totalQuantity } = cartData()
+    const { data: user } = useGetUserQuery({})
     const router = useRouter()
+
+    const separate = user?.response?.name.split(' ')
+    
 
     const searchHandler = (value:any) => {
         router.push(`/products/search?value=${value.target.value}`)
@@ -41,7 +46,10 @@ const LeftComponent = () => {
 
             </Link>
 
-            <Link href='/auth/sign-in'><FaRegUser className="text-[22px]" /></Link>
+            <Link className="flex items-center gap-1" href='/dashboard/user/profile'>
+                <FaRegUser className="text-[22px]"/>
+                <p className="text-sm lowercase">{separate ? separate[1] : ''}</p>
+            </Link>
         </div>
     );
 };

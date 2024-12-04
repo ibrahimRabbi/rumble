@@ -7,14 +7,15 @@ import { useGetOrderQuery } from "@/redux/api/baseApi";
 import toast from "react-hot-toast";
 import moment from 'moment';
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next/client";
 
 
 const page = () => {
     const router = useRouter()
-   const token =  localStorage.getItem('accessToken')
+   const token =  getCookie('accessToken')
     const { data } = useGetOrderQuery({})
     const [orderData, setorderData] = useState(data?.response)
- 
+
     if (data?.message === 'jwt expired') {
         toast.error('login expired')
         router.push('/auth/sign-in')
@@ -28,7 +29,7 @@ const page = () => {
         })
        .then(res=>res.json())  
         .then(res=>setorderData(res?.response))
-    },[])
+    },[orderData])
 
      
     const searchHandler = async (value: any) => {
@@ -42,7 +43,7 @@ const page = () => {
 
 
     return (
-        <section className=''>
+        <section>
             <div>
                 <p className='text-2xl text-zinc-950 font-semibold'>My orders</p>
                 <p className='text-sm text-zinc-700'>order last 90 days</p>

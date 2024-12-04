@@ -4,7 +4,6 @@ import LeftComponent from "./LeftComponent";
 import MiddleComponent from "./MiddleComponent";
 import logo from '@/assets/rumble-logo.png'
 import Link from "next/link";
-import { IoNotificationsOutline } from "react-icons/io5";
 import Rsearch from "../responsive/Rsearch";
 import RnavLeft from "../responsive/RnavLeft";
 

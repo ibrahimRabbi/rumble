@@ -1,45 +1,21 @@
-'use client'
-
-// import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
 import { FaApple } from "react-icons/fa";
-import { Input } from '@/components/ui/input';
-import { useForm } from 'react-hook-form';
-// import { useSigninMutation } from '@/redux/api/baseApi';
-import toast from 'react-hot-toast';
 import Link from "next/link";
-
-import { redirect } from "next/navigation";
-import { useSignInMutation } from "@/redux/api/baseApi";
+import FxForm from "./_wrapper/FxForm";
+import FXInput from "./_wrapper/FXInput";
+import Image from "next/image";
+import logo from '@/assets/rumble-logo.png'
 
 
 
 
 const SignIn = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm()
-    const [signin] = useSignInMutation()
-
-
-    const signInhandler = async (value: any) => {
-        
-        const response = await signin(value).unwrap()
-        if (!response.success) {
-            toast.error(response.message)
-        } else {
-            toast.success('Sign-In Successfully')
-            localStorage.setItem('accessToken', response.accessToken)
-            redirect('/') 
-        }
-
-    }
-
-
 
     return (
         <section>
             <Link href='/' className='inline-block mt-4 ml-2'>
-                <img className='w-40 rounded-sm' src="../../public/rumbleWeb.png" alt="" />
+                <Image className='w-40 rounded-sm' width={250} height={80} src={logo} alt="logo" />
             </Link>
             <div className='lg:mt-10 mt-16'>
 
@@ -51,27 +27,16 @@ const SignIn = () => {
                     </div>
                 </div>
 
-                <form onSubmit={handleSubmit(signInhandler)} className='lg:w-1/2 w-[90%] m-auto mt-10'>
 
+
+                <FxForm>
                     <div className='mt-6 lg:w-1/2  mx-auto'>
                         <p className='text-[#323232] text-center text-2xl font-[700]'>Sign in to your Account</p>
-                        <div className='space-y-5 lg:mt-2 mt-4'>
-                            <div>
-                                <Input type="email" {...register('email', { required: true, })} placeholder='@username or email' />
-                                {errors.email?.type === 'required' && <p className='text-red-500 text-sm'>email or username is required</p>}
-                            </div>
-                            <div>
-                                <Input type='password' {...register('password', { required: true, minLength: 6 })} placeholder='Enter password' />
-                                {errors.password?.type === 'required' && <p className='text-red-500 text-sm'>password is required</p>}
-                                {errors.password?.type === 'minLength' && <p className='text-red-500 text-sm'>password must be minimum 6 characters</p>}
-                            </div>
-                        </div>
-
-
+                        <FXInput/>
                         <input type="submit" value='Login' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-8 rounded-lg font-semibold w-full mx-auto block' />
                     </div>
+                </FxForm>
 
-                </form>
 
                 <div className='lg:w-1/5 mt-5 mx-auto text-xs font-semibold text-center'>
                     <Link href='/auth/sign-up' className='underline'>Forget Password?</Link>

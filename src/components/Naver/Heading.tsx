@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FaHeartbeat } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
-import { TfiEmail } from "react-icons/tfi";
 import { RiCustomerService2Line } from "react-icons/ri";
  
 

@@ -1,10 +1,9 @@
 'use client'
 import Filter from "@/components/Filter/Filter";
 import Rcategory from "@/components/responsive/Rcategory";
-import Card from "@/components/ui/Card";
-import Link from "next/link";
 import { useSearchParams, useParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
+import Displayed from "./_dataDisplayed/Displayed";
 
 
 
@@ -15,40 +14,53 @@ const page = () => {
 
 
     const queryData = query.get('value')
-    console.log(queryData)
+    
     const [data, setData] = useState([])
     const [isChecked, setIsChecked] = useState('')
+    const [isLoading,setIsLoading] = useState(false)
 
 
 
 
     useEffect(() => {
+        setIsLoading(true)
         if (path.pathName === 'search' && queryData) {
             fetch(`http://localhost:5000/api/products/get-products?search=${queryData}`)
                 .then(res => res.json())
-                .then(res => setData(res?.response))
+                .then(res => {
+                    setData(res?.response)
+                    setIsLoading(false)
+                } )
         }
         if (path.pathName === 'category' && queryData) {
             fetch(`http://localhost:5000/api/products/get-products?category=${queryData}`)
                 .then(res => res.json())
-                .then(res => setData(res?.response))
+                .then(res => {
+                    setData(res?.response)
+                    setIsLoading(false)
+                })
         }
 
       if(!queryData) {
             fetch(`http://localhost:5000/api/products/get-products?limit=12`)
                 .then(res => res.json())
-                .then(res => setData(res?.response))
+                .then(res => {
+                    setData(res?.response)
+                    setIsLoading(false)
+                })
         }
 
     }, [queryData,path.pathName])
 
 
     const checkHandler = async (isChecked: boolean, value: any) => {
+        setIsLoading(true)
         if (isChecked) {
             const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
             const { response } = await fetchingdata.json()
             setIsChecked(value.name)
             setData(response)
+            setIsLoading(false)
         }
     }
 
@@ -86,10 +98,11 @@ const page = () => {
     }
 
     const genderhandler = async (gender: string) => {
-        console.log(gender)
+        setIsLoading(true)
         const fetching = await fetch(`http://localhost:5000/api/products/get-products?gender=${gender}`)
         const { response } = await fetching.json()
         setData([...response] as any)
+        setIsLoading(false)
     }
 
 
@@ -102,21 +115,8 @@ const page = () => {
             <div className={`flex justify-between items-start mt-4 w-[90%] mx-auto`}>
 
                 <div className='hidden lg:block lg:w-[25%]'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
-
-                <Suspense fallback={<p className='text-3xl'>Loading....</p>}>
-                    {
-                        data?.length < 1 ?
-                            <div className='lg:w-[72%] w-[95%] mt-28 items-center flex justify-center flex-col gap-2'>
-                            <div className='text-xl flex font-semibold text-zinc-800'>did not find products <span> ☹️</span></div>
-                            <Link href='/products/search' className='bg-green-400 p-2 rounded-md border hover:bg-green-500 font-semibold text-zinc-800'>See All</Link>
-                        </div> :
-                            <div className='lg:w-[72%] grid grid-cols-2 lg:grid-cols-4 gap-5'>
-                                {
-                                    data?.map((data: any) => <Card key={Math.random()} data={data} />)
-                                }
-                            </div>
-                    }
-
+                <Suspense fallback={<p className='text-3xl text-center'>Loading....</p>}>
+                    <Displayed data={data} isLoading={isLoading} />
                 </Suspense>
             </div>
         </section>

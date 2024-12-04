@@ -1,9 +1,10 @@
 'use client'
-import Filter from '../Filter/Filter';
-import Title from '../ui/Title';
-import Card from '../ui/Card';
 import { Suspense, useEffect, useState } from 'react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
+import Title from '@/components/ui/Title';
+import Filter from '@/components/Filter/Filter';
+import Card from '@/components/ui/Card';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import Products from './_component/Products';
 
 
 
@@ -11,12 +12,17 @@ const ShopIcon = () => {
 
     const [data, setData] = useState([])
     const [isChecked, setIsChecked] = useState(false)
+    const [isLoading, setloading] = useState(false)
 
-    
+
     useEffect(() => {
+        setloading(true)
         fetch(`http://localhost:5000/api/products/get-products?limit=12`)
             .then(res => res.json())
-            .then(res => setData(res?.response))
+            .then(res => {
+                setData(res?.response)
+                setloading(false)
+            })
 
     }, [])
 
@@ -60,21 +66,26 @@ const ShopIcon = () => {
 
 
     const checkHandler = async (isChecked: boolean, value: any) => {
+        setloading(true)
         if (isChecked) {
             const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
             const { response } = await fetchingdata.json()
             setData(response)
             setIsChecked(value.name)
+            setloading(false)
         }
     }
+
+
+
 
     return (
         <section className='w-[90%] mx-auto my-20'>
             <Title title='Shop our Icon' description='shop our recommended products' />
-            
+
             <div className='mt-7 lg:hidden flex justify-end items-center'>
                 <p>Sort By :</p>
-                <Select onValueChange={(value) => sorthandler(value)}>
+                <Select onValueChange={(value: string) => sorthandler(value)}>
                     <SelectTrigger className="w-[30%]">
                         <SelectValue placeholder='Relevance' />
                     </SelectTrigger>
@@ -87,17 +98,14 @@ const ShopIcon = () => {
                     </SelectContent>
                 </Select>
             </div>
-            
+
             <div className={`flex justify-between items-start mt-2 lg:mt-6`}>
-                <div className='lg:w-[25%] hidden lg:block'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
-                
-                <Suspense fallback={<p className='text-3xl'>Loading....</p>}>
-                    <div className='lg:w-[70%] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8'>
-                        {
-                            data?.map((data: any) => <Card key={Math.random()} data={data} />)
-                        }
-                    </div>
-                </Suspense>
+                <div className='lg:w-[25%] hidden lg:block'>
+                    <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} />
+                </div>
+
+                <Products data={data} loading={isLoading} />
+
             </div>
         </section>
     );

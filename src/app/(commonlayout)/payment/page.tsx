@@ -7,7 +7,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import cartData from '@/lib/cartData';
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCreateOrderMutation, useGetUserQuery } from '@/redux/api/baseApi'
 import toast from 'react-hot-toast'

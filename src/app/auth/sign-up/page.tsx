@@ -2,13 +2,12 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { Input } from '@/components/ui/input';
-import toast from 'react-hot-toast';
 import Link from 'next/link';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { districts, genders } from '@/utils/Tools';
 import DialogModal from '@/components/Dialog/Dialog';
 import { useSignUpMutation } from '@/redux/api/baseApi';
-import { redirect } from 'next/navigation';
+import { signup } from '@/service/authServices';
  
 
 
@@ -31,28 +30,7 @@ const Signup = () => {
 
 
     const submitHandler = async (value: any) => {
-
-         
-        if (value.password !== value.confirmPassword) {
-            toast.error('confirm password does not match')
-        } else {
-            const data = { ...value, district, gender}
-            const response = await signUp(data).unwrap()
-            
-            if (!response.success) {
-                toast.error(response.message, {
-                    duration: 4000,
-                    position: 'top-center',
-})
-            } else {
-                toast.success('sign up successfully')
-                setIsOpen(true)
-                localStorage.setItem('accessToken', response.accessToken)
-                redirect('/')
-                
-            }
-        }
-
+         signup(value,district,gender)
     }
 
 

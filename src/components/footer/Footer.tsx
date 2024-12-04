@@ -83,7 +83,7 @@ const Footer = () => {
                     <p className="text-sm">
                         Trade License: TRAD/DSCC/03514/2021
                     </p>
-                    <p className="text-sm">© 2023 Rumble. All Rights Reserved</p>
+                    <p className="text-sm pb-2">© 2023 Rumble. All Rights Reserved - Design & Developed by  <Link className="text-blue-400 underline" href='https://www.linkedin.com/in/ibrahim-rabbi-mern/'>Ibrahim Rabbi</Link></p>
                 </div>
             </div>
         </footer>
