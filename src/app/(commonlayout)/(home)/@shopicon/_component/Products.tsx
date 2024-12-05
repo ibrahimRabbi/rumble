@@ -35,7 +35,7 @@ const Products = ({ data, loading }: { data: any, loading: boolean }) => {
                     <div className='lg:w-[72%] grid grid-cols-2 lg:grid-cols-4 gap-8'>
                         {
 
-                            data?.map((data: any) => <Card key={Math.random()} data={data} />)
+                            data?.map((data: any) => <Card key={data?._id} data={data} />)
                         }
                     </div>
             }

@@ -1,21 +1,25 @@
 
 const loading = () => {
     return (
-        <div className="w-[95%] mx-auto grid lg:grid-cols-4 grid-cols-2 gap-10 ">
-            {
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(v => {
-                    return (
-                        <div key={v} className="flex flex-col gap-4">
-                            <div className="skeleton h-32 w-full"></div>
-                            <div className="skeleton h-4 w-28"></div>
-                            <div className="skeleton h-4 w-full"></div>
-                            <div className="skeleton h-4 w-full"></div>
-                        </div>
-                    )
-                })
-            }
+        <section className="lg:w-[50%] min-h-screen lg:my-12 my-10 w-[90%] mx-auto">
+            <div className="skeleton h-16 w-full"></div>
 
-        </div>
+            <div className="w-[70%] mx-auto flex flex-wrap justify-center items-start gap-5 mt-5">
+                <div className="skeleton h-16 w-full"></div>
+                <div className="skeleton h-16 w-full"></div>
+                <div className="skeleton h-16 w-full"></div>
+            </div>
+
+
+
+
+            <div className='w-[85%] mx-auto mt-12 space-y-6'>
+                <div className="skeleton h-16 w-full"></div>
+                <div className="skeleton h-16 w-full"></div>
+                <div className="skeleton h-12 w-full"></div>
+            </div>
+
+        </section>
     );
 };
 

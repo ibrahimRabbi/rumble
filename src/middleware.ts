@@ -1,26 +1,13 @@
-
-import { getCookie } from 'cookies-next/client'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
-
+import { getUser } from './lib/service'
 
 
 
 export async function middleware(request: NextRequest) {
 
-    // const authRoute = ['/auth/sign-in', '/auth/sign-up']
-    const token = (await cookies()).get('accessToken')?.value
-
-    const fetching = await fetch('http://localhost:5000/api/get-user', {
-        method: 'GET',
-        headers: {
-            Authorization: `${token}`,
-        },
-    })
-    const user = await fetching.json()
-
-
+    const user = await getUser()
 
     if (!user?.success) {
         return NextResponse.redirect(new URL('/auth/sign-in', request.url))
@@ -34,7 +21,11 @@ export async function middleware(request: NextRequest) {
 
 
 export const config = {
-    matcher: ['/payment', '/shipping-address', '/success', '/dashboard/:page*'],
+    matcher: ['/payment', '/shipping-address', '/success','/contact', '/dashboard/:page*'],
 }
 
 
+
+
+
+// const authRoute = ['/auth/sign-in', '/auth/sign-up']

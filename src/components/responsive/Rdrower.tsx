@@ -18,8 +18,8 @@ const Rdrower = () => {
                         {
                             BannerCategoryData.map(v => {
                                 return (
-                                    <Link key={Math.random()} href={{ pathname: `/products/category/`, query: { value: v.name.toLowerCase().toString() } }}>
-                                        <li className='bg-slate-50 hover:bg-green-100 flex justify-start items-center gap-2 p-2' key={Math.random()}>
+                                    <Link key={Math.random().toString().split('.')[1]} href={{ pathname: `/products/category/`, query: { value: v.name.toLowerCase().toString() } }}>
+                                        <li className='bg-slate-50 hover:bg-green-100 flex justify-start items-center gap-2 p-2'>
                                             <Image src={v.icon} alt='icons' width={30} />
                                             <p>{v.name}</p>
                                         </li>

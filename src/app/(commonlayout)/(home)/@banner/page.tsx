@@ -1,6 +1,3 @@
-'use client'
-
-import { Suspense } from 'react';
 import BannerSlider from './_style&compo/Banner';
 import style from './_style&compo/banner.module.css'
 import BannerCategory from '@/components/category/BannerCategory';

@@ -33,7 +33,7 @@ const SignIn = () => {
                     <div className='mt-6 lg:w-1/2  mx-auto'>
                         <p className='text-[#323232] text-center text-2xl font-[700]'>Sign in to your Account</p>
                         <FXInput/>
-                        <input type="submit" value='Login' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-8 rounded-lg font-semibold w-full mx-auto block' />
+                        <input type="submit" value='Login' className='bg-[#ECE64A] cursor-pointer hover:bg-[#dfd936] p-2 mt-8 rounded-lg font-semibold w-full mx-auto block' />
                     </div>
                 </FxForm>
 

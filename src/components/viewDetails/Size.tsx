@@ -10,7 +10,9 @@ const Size = ({ sizes }:{sizes:string[]}) => {
     const size = useAppSelector((state) => state.cart.size)
     const dispatch = useAppDispatch()
     
-
+    const number = Math.random()
+    const split = number.toString().split('.')[1]
+    const id = parseInt(split)*689
 
     
 
@@ -20,7 +22,7 @@ const Size = ({ sizes }:{sizes:string[]}) => {
             <div className='flex mt-1 flex-wrap gap-4'>
                 {sizes?.map(v => {
                     return (
-                        <div key={Math.random()} onClick={()=>dispatch(sizeHandler(v as any))} className={`${size === v ? 'bg-green-300 text-black font-normal' : 'text-zinc-600'} border cursor-pointer font-semibold py-2 px-4 text-[16px] rounded-lg`}>
+                        <div key={id} onClick={()=>dispatch(sizeHandler(v as any))} className={`${size === v ? 'bg-green-300 text-black font-normal' : 'text-zinc-600'} border cursor-pointer font-semibold py-2 px-4 text-[16px] rounded-lg`}>
                             {v}
                         </div>
                     )

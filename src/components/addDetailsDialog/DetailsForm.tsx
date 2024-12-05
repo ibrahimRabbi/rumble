@@ -25,14 +25,20 @@ const DetailsForm = ({ setIsOpen }: { setIsOpen: any }) => {
     const router = useRouter()
 
 
+
+
+    
     const submitHandler = async (data: any) => {
         const response = await addNewaddress({ ...data, district }).unwrap()
+
         if (response?.message == 'jwt expired') {
             toast.error('Login expired')
             router.push('/auth/sign-in')
         }
 
-        if (response.success) {
+        if (!response.success) {
+            toast.error('this details already added')
+        } else {
             setIsOpen(false)
             refetch()
             toast.success('new details added successfully')
@@ -73,7 +79,7 @@ const DetailsForm = ({ setIsOpen }: { setIsOpen: any }) => {
                             </SelectTrigger>
                             <SelectContent>
                                 {
-                                    districts?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                                    districts?.map(v => <SelectItem key={Math.random().toString().split('.')[1]} value={v}>{v}</SelectItem>)
                                 }
                             </SelectContent>
                         </Select>

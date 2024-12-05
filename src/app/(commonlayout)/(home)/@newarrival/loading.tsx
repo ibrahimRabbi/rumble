@@ -3,7 +3,7 @@ const loading = () => {
     return (
         <div className="w-[90%] mx-auto grid lg:grid-cols-4 grid-cols-2 gap-10 ">
             {
-                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map(v => {
+                [914642, 236454, 57454564563, 4334352, 572345555, 4523466, 701223423121, 45432468, 5223489, 156560, 14912181, 179672].map(v => {
                     return (
                         <div key={v} className="flex flex-col gap-4">
                             <div className="skeleton h-32 w-full"></div>

@@ -8,7 +8,8 @@ import OtpInput from "./OtpInput";
 
 
 
-const DialogModal = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any }) => {
+const DialogModal = ({data, isOpen, setIsOpen, sendingOtp }: {data:any, isOpen: boolean, setIsOpen: any, sendingOtp: number }) => {
+    
     return (
         <div>
             <Dialog open={isOpen}>
@@ -16,9 +17,7 @@ const DialogModal = ({ isOpen, setIsOpen }: { isOpen: boolean, setIsOpen: any })
                 <DialogContent className="sm:max-w-[425px]">
                     <div className="grid gap-4 py-4 text-center">
                         <DialogTitle className="font-bold">OTP Verification</DialogTitle>
-                        <OtpInput />
-                        <p>Verification code not received? <button className="text-sky-400">Resend</button></p>
-                        <Button className="bg-[#ECE64A] hover:bg-[#dfd936] text-zinc-700 font-bold mt-14" onClick={() => setIsOpen(false)}>Sign Up</Button>
+                        <OtpInput data={data} setIsOpen={setIsOpen} sendingOtp={sendingOtp}  />
                     </div>
                 </DialogContent>
             </Dialog>

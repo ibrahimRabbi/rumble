@@ -7,8 +7,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { districts, genders } from '@/utils/Tools';
 import DialogModal from '@/components/Dialog/Dialog';
 import { useSignUpMutation } from '@/redux/api/baseApi';
-import { signup } from '@/service/authServices';
- 
+import toast from 'react-hot-toast';
+
 
 
 
@@ -20,17 +20,27 @@ const Signup = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [district, setDistrict] = useState('')
     const [gender, setGender] = useState('male')
-    const [signUp,{isLoading}] = useSignUpMutation()
-     
+    const [signUp, { isLoading }] = useSignUpMutation()
+    const [sendingOtp, setSendingOtp] = useState(0)
+    const [data,setData] = useState({})
+
 
     if (isLoading) {
-    return <h1 className='text-5xl flex justify-center items-center h-screen'>Loading...</h1>
-}
+        return <h1 className='text-5xl flex justify-center items-center h-screen'>Loading...</h1>
+    }
 
 
 
     const submitHandler = async (value: any) => {
-         signup(value,district,gender)
+        const userData = { ...value, district, gender }
+        const response = await signUp(userData).unwrap()
+        if (response.otp) {
+            setSendingOtp(response.otp)
+            setData(userData)
+            setIsOpen(true)
+        } else {
+            toast.error(response.message)
+        }
     }
 
 
@@ -77,7 +87,7 @@ const Signup = () => {
                         {errors.gender?.type === 'required' && <p className='text-red-500 text-sm'>gender is required</p>}
                     </div>
 
-                   
+
 
                     <div>
                         <Select onValueChange={(value) => setDistrict(value)}>
@@ -94,9 +104,9 @@ const Signup = () => {
                     </div>
 
                     <div>
-                        <Input disabled={district===''?true:false} className='border p-2 rounded-md w-full' type='text'
+                        <Input disabled={district === '' ? true : false} className='border p-2 rounded-md w-full' type='text'
                             {...register('address', { required: true, })} placeholder="Address" />
-                        {errors.age?.type === 'required' && <p className='text-red-500 text-sm'>age is required</p>}
+                        {errors.age?.type === 'required' && <p className='text-red-500 text-sm'>address is required</p>}
                     </div>
 
 
@@ -120,7 +130,7 @@ const Signup = () => {
                     </div>
                 </div>
                 <p className='mt-2 text-sm font-semibold text-center'>Already have an account? <Link href='/auth/sign-in' className='text-sky-500 font-bold'>Login</Link> </p>
-                <DialogModal isOpen={isOpen} setIsOpen={setIsOpen} />
+                <DialogModal data={data} sendingOtp={sendingOtp} isOpen={isOpen} setIsOpen={setIsOpen} />
                 <input type="submit" value='Send OTP' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-12 rounded-lg font-semibold lg:w-1/2 w-full mx-auto block' />
             </form>
 

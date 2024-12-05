@@ -17,7 +17,9 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
     const id = params?.viewDetails
     const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${id}`)
     const { response } = await fetchingSingleData.json()
-
+    const number = Math.random()
+    const split = number.toString().split('.')[1]
+    const Qid = parseInt(split)*5892
    
 
     return (
@@ -40,7 +42,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                         <p className="font-semibold text-[17px] text-zinc-800">Product Specifications : </p>
                         <ul className='list-disc font-semibold text-zinc-600 text-sm ml-5 mt-1'>
                             {
-                            response?.spacifications?.map((v: string) => <li key={Math.random()}>{v}</li>)
+                            response?.spacifications?.map((v: string) => <li key={Qid}>{v}</li>)
                              }
                         </ul>
                     </div>

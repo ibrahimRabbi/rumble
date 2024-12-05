@@ -26,7 +26,8 @@ export type DeliverAddress = {
     phone: string,
     address: string,
     district: string,
-    isSelect: boolean
+    isSelect: boolean,
+    _id:string
 }
 
 
@@ -39,6 +40,9 @@ const page = () => {
     const dispatch = useAppDispatch()
     const { data: user } = useGetUserQuery({})
     
+    const number = Math.random()
+    const split = number.toString().split('.')[1]
+    const id = parseInt(split)*778
 
 
 
@@ -96,10 +100,10 @@ const page = () => {
                             {
                                 user?.response?.deliverAddress?.map((v: DeliverAddress) => {
                                     return (
-                                        window.innerWidth > 470 ?
-                                            <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
+                                       
+                                            <div key={v?._id} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
                                                 <div className='flex items-center gap-2'>
-                                                    <Checkbox checked={isChecked} onCheckedChange={(checked) => pickDetails(v, checked as boolean)} />
+                                                    <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
 
                                                     <p className='font-semibold'>{v?.name}</p>
                                                     <p className=''>{v?.phone}</p>
@@ -107,19 +111,7 @@ const page = () => {
                                                     <p className='lg:pl-4'>{v?.address}, <span>{v?.district}</span></p>
                                                 </div>
                                                 <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
-                                            </div> :
-                                            <div key={Math.random()} className='min-w-full flex justify-between gap-2 items-center p-2 bg-green-100 bordre rounded-md'>
-                                                <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
-                                                <div className='flex w-full gap-2 items-center'>
-                                                    <div className='flex w-full gap-2 items-center'>
-                                                        <p className='text-nowrap'>{v?.name}</p>
-                                                        <span>{v?.phone}</span>
-                                                        <span>{v.address}, {v.district}</span>
-                                                    </div>
-                                                    <button onClick={() => deleteHandler(v)} className='text-sky-600 underline '>Delete</button>
-                                                </div>
                                             </div>
-
                                     )
                                 })
                             }

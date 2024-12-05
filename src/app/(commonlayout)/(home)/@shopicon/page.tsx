@@ -105,7 +105,6 @@ const ShopIcon = () => {
                 </div>
 
                 <Products data={data} loading={isLoading} />
-
             </div>
         </section>
     );
