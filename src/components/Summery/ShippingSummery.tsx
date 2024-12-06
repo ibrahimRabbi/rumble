@@ -4,17 +4,27 @@ import React from 'react';
 import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/redux/hook';
 
 
 
 
-const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress }) => {
+const ShippingSummery = ({ price, ProductId, shippingDetails }: { price:string, ProductId:string, shippingDetails:DeliverAddress }) => {
 
-
-
-    const { totalQuantity, amount, discount, vat,delivaryCharge, subTotal } = cartData()
+    const { quantity } = useAppSelector(state => state.cart)
+    const { totalQuantity, amount, discount, vat, delivaryCharge, subTotal } = cartData()
     const router = useRouter()
     const detailsLength = Object.keys(shippingDetails).length
+
+
+    const BuyNowAmount = parseInt(price) * quantity
+    const BuyNowTotal = (parseInt(price) * quantity) + delivaryCharge
+
+
+
+   
+    
+   
 
 
 
@@ -22,7 +32,11 @@ const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress })
         if (detailsLength === 0) {
             toast.error('please select your address & details')
         } else {
-            router.push(`/payment?address=${shippingDetails?.address}&district=${shippingDetails?.district}&phone=${shippingDetails?.phone}&name=${shippingDetails?.name}`)
+            if (ProductId) {
+                router.push(`/payment?address=${shippingDetails?.address}&district=${shippingDetails?.district}&phone=${shippingDetails?.phone}&name=${shippingDetails?.name}&subtotal=${BuyNowTotal}&productId=${ProductId}`)
+            } else {
+                router.push(`/payment?address=${shippingDetails?.address}&district=${shippingDetails?.district}&phone=${shippingDetails?.phone}&name=${shippingDetails?.name}`)
+           }
         }
     }
 
@@ -39,7 +53,7 @@ const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress })
                     Quantitiy :
                     <span className='text-zinc-700'>
                         {
-                            totalQuantity === 0 ? "--" : totalQuantity
+                            totalQuantity === 0 ? "--" : ProductId ? quantity : totalQuantity
                         }
                     </span>
                 </div>
@@ -48,7 +62,7 @@ const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress })
                     Total Amount :
                     <span className='text-zinc-700'>
                         {
-                            amount === 0 ? '--' : `${amount}-TK`
+                            amount === 0 ? '--' : ProductId ? BuyNowAmount : `${amount}-TK`
                         }
                     </span>
                 </div>
@@ -80,7 +94,7 @@ const ShippingSummery = ({ shippingDetails}: { shippingDetails:DeliverAddress })
                     </span>
                 </div>
                 <div className="divider"></div>
-                <p className="text-[21px] text-gray-900 font-semibold rounded-lg">Sub Total : {subTotal}-TK</p>
+                <p className="text-[21px] text-gray-900 font-semibold rounded-lg">Sub Total : {ProductId ? BuyNowTotal : subTotal}-TK</p>
                 <Button onClick={nextStepHandler} className={`bg-amber-400 hover:bg-amber-500 text-center font-semibold text-zinc-800 text-[16px] w-full`}>Procced To Pay</Button>
             </div>
         </div>

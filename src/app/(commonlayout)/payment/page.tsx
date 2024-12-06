@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useCreateOrderMutation, useGetUserQuery } from '@/redux/api/baseApi'
 import toast from 'react-hot-toast'
+import { useAppSelector } from '@/redux/hook'
 
 
 
@@ -19,33 +20,63 @@ const page = () => {
     const { subTotal, totalQuantity, data } = cartData()
     const { data: user } = useGetUserQuery({})
     const [createOrder, { }] = useCreateOrderMutation()
+    const {quantity,color,size} = useAppSelector(state=>state.cart)
     const router = useRouter()
-
     const query = useSearchParams()
     const name = query.get('name')
     const number = query.get('phone')
     const address = query.get('address')
     const district = query.get('district')
+    const buyNowsubtotal = query.get('subtotal')
+    const productId = query.get('productId')
 
+
+    console.log(size, color)
+
+    
     const orderData = {
         email: user?.response?.email,
         items: data?.response,
         totalQuantity,
         deliverDetails: { name, number, address, district },
-        amount: subTotal
+        amount: subTotal,
+        size,color
+    }
+
+
+    const buyNowOrderData = {
+         email: user?.response?.email,
+         items: productId,
+         totalQuantity:quantity,
+         deliverDetails: { name, number, address, district },
+         amount: buyNowsubtotal,
+        size,
+        color
     }
 
 
 
     const successHandler = async () => {
-        const creating = await createOrder(orderData).unwrap()
-        console.log(creating)
-        if (creating?.response.length > 1) {
-            toast.success('order successfull!')
-            router.push('/success')
+        if (buyNowsubtotal) {
+            const creating = await createOrder(buyNowOrderData).unwrap()
+            console.log(creating)
+            if (creating?.response.length > 1) {
+                toast.success('order successfull!')
+                router.push('/success')
+            } else {
+                toast.error('something went wrong please try again')
+            }
         } else {
-            toast.error('something went wrong please try again')
-        }
+            const creating = await createOrder(orderData).unwrap()
+            if (creating?.response.length > 1) {
+                toast.success('order successfull!')
+                router.push('/success')
+            } else {
+                toast.error('something went wrong please try again')
+            }
+       }
+        
+       
     }
 
     return (
@@ -83,11 +114,13 @@ const page = () => {
                     <p className='text-xl font-semibold text-zinc-900'>Shopping Summery</p>
                     <div className='flex justify-between gap-2 items-center mt-5'>
                         <p className='text-gray-500 text-sm'>Subtotal ( {totalQuantity} items and shipping fee included)</p>
-                        <p>{subTotal}-Tk</p>
+                        <p>{buyNowsubtotal? buyNowsubtotal:subTotal}-Tk</p>
                     </div>
                     <div className='flex justify-between items-center mt-6'>
                         <p className='text-lg text-zinc-800'>Payable Amount :</p>
-                        <p className='text-xl text-green-950 font-semibold'>{subTotal + 10}-Tk</p>
+                        <p className='text-xl text-green-950 font-semibold'>
+                            {buyNowsubtotal ? buyNowsubtotal : subTotal + 10}-Tk
+                        </p>
                     </div>
                 </div>
             </div>

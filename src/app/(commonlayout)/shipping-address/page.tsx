@@ -11,10 +11,11 @@ import bekash from '@/assets/payment/bekash.png'
 import nagad from '@/assets/payment/nagad-removebg-preview.png'
 import masterCard from '@/assets/payment/masterCard.png'
 import visaCard from '@/assets/payment/visa-removebg-preview.png'
-import { useAppDispatch } from '@/redux/hook';
+import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { changeDelivaryChrg } from '@/redux/features/shippingSlice';
 import { Checkbox } from '@/components/ui/checkbox';
 import RprocedToPay from '@/components/responsive/RprocedToPay';
+import { useSearchParams } from 'next/navigation';
 
 
 
@@ -39,10 +40,12 @@ const page = () => {
     const [deleteaddress, { }] = useDeleteAddressMutation()
     const dispatch = useAppDispatch()
     const { data: user } = useGetUserQuery({})
+    const query = useSearchParams()
+    const productId:any = query.get('id')
+    const price:any = query.get('price')
+
     
-    const number = Math.random()
-    const split = number.toString().split('.')[1]
-    const id = parseInt(split)*778
+     
 
 
 
@@ -66,10 +69,6 @@ const page = () => {
             toast.success('deleted successfully')
         }
     }
-
-
-
-
 
     // if (isLoading) {
     //     return <h1 className='text-2xl flex justify-center mt-10'>Loading...</h1>
@@ -141,7 +140,7 @@ const page = () => {
 
 
                 <div className='hidden lg:block lg:w-[28%] border'>
-                    <ShippingSummery shippingDetails={details as DeliverAddress} />
+                    <ShippingSummery price={price} ProductId={productId} shippingDetails={details as DeliverAddress}/>
                 </div>
             </div>
         </section>

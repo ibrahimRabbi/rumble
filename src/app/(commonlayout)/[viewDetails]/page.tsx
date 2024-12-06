@@ -55,7 +55,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                     </div>
 
                     <div className="divider"></div>
-                    <AddToCartBtn id={id} stock={response?.stock} />
+                    <AddToCartBtn price={response?.price} id={id} stock={response?.stock} />
                 </div>
             </div>
 
