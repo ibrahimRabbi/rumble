@@ -144,10 +144,20 @@ export const baseApi = createApi({
             },
             providesTags : ['order']
         }),
+
+        callRequest: builder.mutation({
+            query: (userId) => {
+                return {
+                    url:'/request/insert-call',
+                    method: 'POST',
+                    body:{user:userId}
+                }
+            }
+        })
          
 
     }),
 })
 
 
-export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery,useCreateOrderMutation,useGetOrderQuery } = baseApi
+export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery,useCreateOrderMutation,useGetOrderQuery,useCallRequestMutation } = baseApi

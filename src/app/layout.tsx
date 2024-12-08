@@ -3,7 +3,12 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/lib/Provider";
- 
+import emailjs from '@emailjs/browser';
+import { ReactNode } from "react";
+
+
+
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -28,6 +33,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
+         
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

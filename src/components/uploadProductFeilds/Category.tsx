@@ -26,7 +26,7 @@ const Category = ({ seleteCategory, setSelectCategory, setSubCategory }: { selet
                     </SelectTrigger>
                     <SelectContent>
                         {
-                            categoryData?.map(v => <SelectItem key={Math.random()} value={v.category}>{v.category}</SelectItem>)
+                            categoryData?.map((v,index) => <SelectItem key={index+1} value={v.category}>{v.category}</SelectItem>)
                         }
                     </SelectContent>
                 </Select>
@@ -39,7 +39,7 @@ const Category = ({ seleteCategory, setSelectCategory, setSubCategory }: { selet
                     </SelectTrigger>
                     <SelectContent>
                         {
-                            subcategoriesData?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                            subcategoriesData?.map((v,index) => <SelectItem key={Math.random().toString().split('.')[1]} value={v}>{v}</SelectItem>)
                         }
                     </SelectContent>
                 </Select> 

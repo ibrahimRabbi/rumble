@@ -43,9 +43,9 @@ const HotProducts = () => {
                     {
                         data?.response?.map((v: any) => {
                             return (
-                                <Link key={v?._id} href={`/${v._id}`}>
-                                    <SwiperSlide>
 
+                                <SwiperSlide key={v?._id}>
+                                    <Link href={`/${v._id}`}>
                                         <div
                                             style={{ backgroundImage: `url(${v?.coverPhoto})`, height: '280px' }}
                                             className={`bg-center bg-no-repeat bg-cover flex flex-col rounded-md justify-between border items-end h-[300px]`}
@@ -58,9 +58,10 @@ const HotProducts = () => {
                                                 <Link className='text-green-900 text-sm  font-bold flex items-center gap-1' href='/'><FaRegEye />View Item </Link>
                                             </div>
                                         </div>
-                                    </SwiperSlide>
-                                </Link>
-                        
+                                    </Link>
+                                </SwiperSlide>
+
+
                             )
                         })
                     }

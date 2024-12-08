@@ -1,5 +1,4 @@
 import "react-image-gallery/styles/css/image-gallery.css";
-// import Swal from 'sweetalert2';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import Increment from "@/components/viewDetails/Increment";
@@ -7,19 +6,18 @@ import Size from "@/components/viewDetails/Size";
 import ImageGallry from "@/components/viewDetails/imageGallry";
 import Color from "@/components/viewDetails/Color";
 import AddToCartBtn from "@/components/cart/AddToCartBtn";
+// import { useParams } from "next/navigation";
  
 
 
 
 
-const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
+const SingleData = async ({params}:{params:{viewDetails:string}}) => {
     
-    const id = params?.viewDetails
-    const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${id}`)
+    //const { viewDetails } = useParams()
+    const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${params?.viewDetails}`)
     const { response } = await fetchingSingleData.json()
-    const number = Math.random()
-    const split = number.toString().split('.')[1]
-    const Qid = parseInt(split)*5892
+    
    
 
     return (
@@ -42,7 +40,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                         <p className="font-semibold text-[17px] text-zinc-800">Product Specifications : </p>
                         <ul className='list-disc font-semibold text-zinc-600 text-sm ml-5 mt-1'>
                             {
-                            response?.spacifications?.map((v: string) => <li key={Qid}>{v}</li>)
+                            response?.spacifications?.map((v: string,index:number) => <li key={index+1}>{v}</li>)
                              }
                         </ul>
                     </div>
@@ -55,7 +53,7 @@ const SingleData = async ({ params }: { params: { viewDetails: string } }) => {
                     </div>
 
                     <div className="divider"></div>
-                    <AddToCartBtn price={response?.price} id={id} stock={response?.stock} />
+                    <AddToCartBtn price={response?.price} id={params?.viewDetails} stock={response?.stock} />
                 </div>
             </div>
 

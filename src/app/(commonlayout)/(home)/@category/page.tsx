@@ -31,9 +31,9 @@ const Category = () => {
                 modules={[Autoplay, FreeMode]}
             >
                 {
-                    category.map((value) => {
+                    category.map((value,index) => {
                         return (
-                            <SwiperSlide className='mt-3' key={Math.random()}>
+                            <SwiperSlide className='mt-3' key={index+1}>
                                 <Link href={`products/category?value=${value?.name.toLowerCase()}`}> <CategoryCard image={value.image} name={value.name} /></Link>
                             </SwiperSlide>
                         )

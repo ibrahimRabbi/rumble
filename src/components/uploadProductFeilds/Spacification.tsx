@@ -33,9 +33,9 @@ const Spacification = ({ specifics, setSpecifics }: { specifics:any, setSpecific
             </div>
             <div className='pt-12 space-y-2'>
                 {
-                    specifics.map((v:string) => {
+                    specifics.map((v:string,index:number) => {
                         return (
-                            <div key={Math.random()} className='bg-green-200 text-black space-x-5 p-2 rounded-md flex items-center justify-between'>
+                            <div key={index+1} className='bg-green-200 text-black space-x-5 p-2 rounded-md flex items-center justify-between'>
                                 <p  className=''>{v}</p>
                                 <RxCross2 onClick={() => deleteSpacific(v)} />
                             </div>

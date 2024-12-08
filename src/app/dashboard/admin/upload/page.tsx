@@ -134,7 +134,7 @@ const [addProdcut,{isLoading}] = useAddProductMutation()
                         </SelectTrigger>
                         <SelectContent>
                             {
-                                genders?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                                genders?.map((v,index) => <SelectItem key={index+1} value={v}>{v}</SelectItem>)
                             }
                         </SelectContent>
                     </Select>

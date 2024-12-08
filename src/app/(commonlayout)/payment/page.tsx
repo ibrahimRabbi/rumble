@@ -8,7 +8,7 @@ import Image from 'next/image';
 import cartData from '@/lib/cartData';
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useCreateOrderMutation, useGetUserQuery } from '@/redux/api/baseApi'
+import { useCreateOrderMutation, useGetCartQuery, useGetUserQuery } from '@/redux/api/baseApi'
 import toast from 'react-hot-toast'
 import { useAppSelector } from '@/redux/hook'
 
@@ -17,7 +17,7 @@ import { useAppSelector } from '@/redux/hook'
 const page = () => {
 
     const [isDisabled, setDisabled] = useState(true)
-    const { subTotal, totalQuantity, data } = cartData()
+    const { subTotal, totalQuantity, data, refetch } = cartData()
     const { data: user } = useGetUserQuery({})
     const [createOrder, { }] = useCreateOrderMutation()
     const {quantity,color,size} = useAppSelector(state=>state.cart)
@@ -31,7 +31,7 @@ const page = () => {
     const productId = query.get('productId')
 
 
-    console.log(size, color)
+    
 
     
     const orderData = {
@@ -62,6 +62,7 @@ const page = () => {
             console.log(creating)
             if (creating?.response.length > 1) {
                 toast.success('order successfull!')
+                refetch()
                 router.push('/success')
             } else {
                 toast.error('something went wrong please try again')
@@ -70,6 +71,7 @@ const page = () => {
             const creating = await createOrder(orderData).unwrap()
             if (creating?.response.length > 1) {
                 toast.success('order successfull!')
+                refetch()
                 router.push('/success')
             } else {
                 toast.error('something went wrong please try again')
@@ -113,7 +115,7 @@ const page = () => {
                 <div className='bg-slate-100 p-4 lg:w-[35%] w-full'>
                     <p className='text-xl font-semibold text-zinc-900'>Shopping Summery</p>
                     <div className='flex justify-between gap-2 items-center mt-5'>
-                        <p className='text-gray-500 text-sm'>Subtotal ( {totalQuantity} items and shipping fee included)</p>
+                        <p className='text-gray-500 text-sm'>Subtotal ( {productId? quantity : totalQuantity} items and shipping fee included)</p>
                         <p>{buyNowsubtotal? buyNowsubtotal:subTotal}-Tk</p>
                     </div>
                     <div className='flex justify-between items-center mt-6'>

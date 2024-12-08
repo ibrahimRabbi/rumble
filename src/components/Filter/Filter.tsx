@@ -47,9 +47,9 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                             <AccordionContent>
                                 <div className="space-y-5">
                                     {
-                                        products.map(product => {
+                                        products.map((product,index) => {
                                             return (
-                                                <div key={Math.random()} className="flex gap-3 items-center text-zinc-700 text-[17px]">
+                                                <div key={index+1} className="flex gap-3 items-center text-zinc-700 text-[17px]">
                                                     <Checkbox
                                                         checked={isChecked === product.name? true : false}
                                                         onCheckedChange={(isChecked) => checkHandler(isChecked, product)}
@@ -72,7 +72,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
                                     {
-                                        gender.map(v => <p
+                                        gender.map((v) => <p
                                             onClick={() => {
                                                 genderhandler(v)
                                                 setSelecetedGender(v)

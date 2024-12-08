@@ -51,7 +51,7 @@ const SizePreferance = ({ selectedsize, setSelectedSize }: { selectedsize:any, s
                     </SelectTrigger>
                     <SelectContent>
                         {
-                            sizePreferences?.map(v => <SelectItem key={Math.random()} value={v.type}>{v.type}</SelectItem>)
+                            sizePreferences?.map((v,index) => <SelectItem key={index+1} value={v.type}>{v.type}</SelectItem>)
                         }
                     </SelectContent>
                 </Select>
@@ -65,7 +65,7 @@ const SizePreferance = ({ selectedsize, setSelectedSize }: { selectedsize:any, s
                     </SelectTrigger>
                     <SelectContent>
                         {
-                            sizes?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                            sizes?.map((v,index) => <SelectItem key={index+1} value={v}>{v}</SelectItem>)
                         }
                     </SelectContent>
                 </Select>
@@ -75,8 +75,8 @@ const SizePreferance = ({ selectedsize, setSelectedSize }: { selectedsize:any, s
                     {
                         selectedsize.map((v: string) => {
                             return (
-                                <div key={Math.random()} className='bg-green-200 border p-2 rounded-md flex items-center gap-2'>
-                                    <p key={Math.random()} >{v}</p>
+                                <div key={Math.random()*785} className='bg-green-200 border p-2 rounded-md flex items-center gap-2'>
+                                    <p key={Math.random()*453} >{v}</p>
                                     <RxCross2 onClick={() => deleteSize(v)} />
                                 </div>
                             )

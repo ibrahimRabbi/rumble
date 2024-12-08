@@ -19,7 +19,6 @@ const Color = ({color,setColor}:{color:any, setColor:any}) => {
     }
 
     const deleteColor = (value: string) => {
-
         const deleteData = color.filter((v:string) => value !== v)
         setColor(deleteData)
     }
@@ -35,16 +34,16 @@ const Color = ({color,setColor}:{color:any, setColor:any}) => {
                 </SelectTrigger>
                 <SelectContent>
                     {
-                        colors?.map(v => <SelectItem key={Math.random()} value={v}>{v}</SelectItem>)
+                        colors?.map((v,index) => <SelectItem key={index+1} value={v}>{v}</SelectItem>)
                     }
                 </SelectContent>
             </Select>
 
             <div className='flex items-center gap-2 mt-2'>
                 {
-                    color.map((v:string) => {
+                    color.map((v:string,index:number) => {
                         return (
-                            <div key={Math.random()} className='bg-green-200 border p-2 rounded-md flex items-center gap-1'>
+                            <div key={index+1} className='bg-green-200 border p-2 rounded-md flex items-center gap-1'>
                                 <p key={Math.random()} >{v}</p>
                                 <RxCross2 onClick={() => deleteColor(v)} />
                             </div>

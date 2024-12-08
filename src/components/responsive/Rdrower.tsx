@@ -16,9 +16,9 @@ const Rdrower = () => {
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
                     <ul className='w-[300px] space-y-1 bg-slate-50 min-h-screen pt-3 rounded-lg text-zinc-950 text-[17px] lg:z-50 absolute'>
                         {
-                            BannerCategoryData.map(v => {
+                            BannerCategoryData.map((v,index) => {
                                 return (
-                                    <Link key={Math.random().toString().split('.')[1]} href={{ pathname: `/products/category/`, query: { value: v.name.toLowerCase().toString() } }}>
+                                    <Link key={index+1} href={{ pathname: `/products/category/`, query: { value: v.name.toLowerCase().toString() } }}>
                                         <li className='bg-slate-50 hover:bg-green-100 flex justify-start items-center gap-2 p-2'>
                                             <Image src={v.icon} alt='icons' width={30} />
                                             <p>{v.name}</p>

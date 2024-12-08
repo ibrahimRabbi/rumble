@@ -8,6 +8,7 @@ import { IoMdAdd } from "react-icons/io";
 
 
 export type DeliverAddress = {
+    _id:string
     name: string,
     phone: string,
     address: string,
@@ -48,7 +49,7 @@ const page = () => {
                 {
                     user?.response?.deliverAddress?.map((v: DeliverAddress) => {
                         return (
-                                <div key={Math.random()} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
+                                <div key={v._id} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
                                     <div className='flex items-center gap-2'>
 
                                         <p className='font-semibold'>{v?.name}</p>

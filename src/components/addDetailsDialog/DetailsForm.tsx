@@ -79,7 +79,7 @@ const DetailsForm = ({ setIsOpen }: { setIsOpen: any }) => {
                             </SelectTrigger>
                             <SelectContent>
                                 {
-                                    districts?.map(v => <SelectItem key={Math.random().toString().split('.')[1]} value={v}>{v}</SelectItem>)
+                                    districts?.map((v,index) => <SelectItem key={index+1} value={v}>{v}</SelectItem>)
                                 }
                             </SelectContent>
                         </Select>

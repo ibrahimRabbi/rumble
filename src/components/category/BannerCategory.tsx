@@ -13,9 +13,9 @@ const BannerCategory = () => {
         <div className='lg:flex hidden'>
             <ul className='w-[300px] space-y-1 bg-slate-50 rounded-lg text-zinc-950 text-[17px] lg:z-50 absolute'>
                 {
-                    BannerCategoryData.map(v => {
+                    BannerCategoryData.map((v, index) => {
                         return (
-                            <Link key={Math.random()} href={{ pathname: `/products/category/` ,query:{value:v.name.toLowerCase().toString()}}}>
+                            <Link key={index+1} href={{ pathname: `/products/category/` ,query:{value:v.name.toLowerCase().toString()}}}>
                                 <li className='bg-slate-50 hover:bg-green-100 flex justify-start items-center gap-2 p-2' key={Math.random()}>
                                     <Image src={v.icon} alt='icons' width={30}/>
                                     <p>{v.name}</p>

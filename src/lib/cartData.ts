@@ -20,8 +20,6 @@ const cartData = () => {
 
 
 
-
-
     data?.response?.forEach((v: Tcart) => {
         totalQuantity += v.quantity
         amount += v.quantity * v.productId?.price
