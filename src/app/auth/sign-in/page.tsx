@@ -1,10 +1,9 @@
-import { FcGoogle } from "react-icons/fc";
-import { FaApple } from "react-icons/fa";
 import Link from "next/link";
 import FxForm from "./_wrapper/FxForm";
 import FXInput from "./_wrapper/FXInput";
 import Image from "next/image";
 import logo from '@/assets/rumble-logo.png'
+import SignInProviderBtn from "./_wrapper/SignInProviderBtn";
 
 
 
@@ -21,13 +20,8 @@ const SignIn = () => {
 
                 <div className='lg:w-1/2 w-[90%] m-auto'>
                     <p className='text-[#323232] text-center text-3xl font-[700]'>Sign in to your Account</p>
-                    <div className=' flex lg:flex-row flex-col justify-center items-center gap-4 mt-4'>
-                        <button className='flex items-center gap-1 border-2 lg:px-10 px-14 py-2 rounded-md'><FcGoogle className='text-[25px]' /> Signup with Google</button>
-                        <button className='flex items-center gap-1 border-2 lg:px-10 px-14 py-2 rounded-md'><FaApple className='text-[25px]' /> Signup with Apple</button>
-                    </div>
+                    <SignInProviderBtn/>
                 </div>
-
-
 
                 <FxForm>
                     <div className='mt-6 lg:w-1/2  mx-auto'>
