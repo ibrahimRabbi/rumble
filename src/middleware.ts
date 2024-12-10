@@ -6,11 +6,12 @@ import { getUser } from './lib/service'
 
 
 export async function middleware(request: NextRequest) {
+    
 
     const user = await getUser()
 
     if (!user?.success) {
-        return NextResponse.redirect(new URL('/auth/sign-in', request.url))
+        return NextResponse.redirect(new URL(`/auth/sign-in?redirect=${request.nextUrl.pathname}`, request.url))
 
     } else {
         return NextResponse.next()

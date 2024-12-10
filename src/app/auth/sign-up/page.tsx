@@ -24,7 +24,7 @@ const Signup = () => {
     const [gender, setGender] = useState('male')
     const [signUp, { isLoading }] = useSignUpMutation()
     const [sendingOtp, setSendingOtp] = useState(0)
-    const [data,setData] = useState({})
+    const [data, setData] = useState({})
 
 
     if (isLoading) {
@@ -35,17 +35,21 @@ const Signup = () => {
 
     const submitHandler = async (value: any) => {
         const userData = { ...value, district, gender }
-        const response = await signUp(userData).unwrap()
-        if (response.otp) {
-            setSendingOtp(response.otp)
-            setData(userData)
-            setIsOpen(true)
+        
+        if (value.password !== value.confirmPassword) {
+            toast.error('confirm doesnt match')
         } else {
-            toast.error(response.message)
+            const response = await signUp(userData).unwrap()
+            if (response.otp) {
+                setSendingOtp(response.otp)
+                setData(userData)
+                setIsOpen(true)
+            } else {
+                toast.error(response.message)
+            }
         }
+
     }
-
-
 
 
     return (
@@ -140,8 +144,8 @@ const Signup = () => {
                     <input type="submit" value='Send OTP' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-12 rounded-lg font-semibold lg:w-1/2 w-full mx-auto block' />
                 </form>
             </div>
-            
-            
+
+
 
 
         </section>

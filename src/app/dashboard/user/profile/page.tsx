@@ -31,7 +31,7 @@ const Profile = () => {
                 <p className="text-gray-500">{user?.response?.phone}</p>
             </div>
 
-            <div className='grid grid-cols-3 gap-14 mt-10'>
+            <div className='grid grid-cols-2 lg:grid-cols-3 gap-14 mt-10'>
                 <div>
                     <div>Name</div>
                     <p className='text-sm font-semibold text-gray-500'>{user?.response?.name}</p>
@@ -79,7 +79,7 @@ const Profile = () => {
             </div>
 
             <div className='mt-10'>
-                <Button className='bg-green-500 font-semibold'>EDIT PROFILE</Button>
+                <Button className='bg-green-500 font-semibold mt-10 block mx-auto lg:w-1/2 w-full'>EDIT PROFILE</Button>
             </div>
 
 

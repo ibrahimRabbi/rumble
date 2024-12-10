@@ -1,17 +1,18 @@
 'use client'
 import { useSignInMutation } from "@/redux/api/baseApi";
 import { setCookie } from "cookies-next/client";
-import { redirect } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { ReactNode } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
  
 
-const FxForm = ({ children}:{children:ReactNode} ) => {
+const FxForm = ({ children, redirect }: { children: ReactNode, redirect:string|null} ) => {
     
     const formTools = useForm()
     const [signin] = useSignInMutation()
+    const router = useRouter()
 
     const signInhandler = async (value: any) => {
         const response = await signin(value).unwrap()
@@ -20,7 +21,7 @@ const FxForm = ({ children}:{children:ReactNode} ) => {
         } else {
             toast.success('Sign-In Successfully')
             setCookie('accessToken', response.accessToken)
-            redirect('/')
+           router.push(`${redirect}`)
         }
     }
     

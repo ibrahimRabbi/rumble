@@ -6,8 +6,6 @@ import Size from "@/components/viewDetails/Size";
 import ImageGallry from "@/components/viewDetails/imageGallry";
 import Color from "@/components/viewDetails/Color";
 import AddToCartBtn from "@/components/cart/AddToCartBtn";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 // import { useParams } from "next/navigation";
  
 
@@ -20,9 +18,7 @@ const SingleData = async ({params}:{params:{viewDetails:string}}) => {
     const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${params?.viewDetails}`)
     const { response } = await fetchingSingleData.json()
      
-            // const session = await getServerSession(authOptions)
-            // console.log(session)
-    
+            
    
 
     return (

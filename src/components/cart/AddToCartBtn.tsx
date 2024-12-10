@@ -2,7 +2,7 @@
 import toast from 'react-hot-toast';
 import { useAddToCartMutation, useGetUserQuery } from '@/redux/api/baseApi';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { resetQuantity } from '@/redux/features/cartSlice';
 import { Button } from '../ui/button';
 
@@ -16,12 +16,14 @@ export type Tcart = {
 
 
 const AddToCartBtn = ({price, id, stock }: {price:number, id: string, stock:number }) => {
+    const path = usePathname()
+    const router = useRouter()
 
     const {data:user} = useGetUserQuery({})
     const [addToCart, { isLoading, }] = useAddToCartMutation()
     const { color, quantity, size } = useAppSelector(state => state.cart)
     const dispatch = useAppDispatch()
-    const router = useRouter()
+   
     
 
     const data: Tcart = {
@@ -33,7 +35,7 @@ const AddToCartBtn = ({price, id, stock }: {price:number, id: string, stock:numb
     const addToCartHandler = async () => {
         if (!user.success) {
             toast.error('unauthorized user please login',{duration:3000})
-            router.push('/auth/sign-in')
+            router.push(`/auth/sign-in?redirect=${path}`)
         } else { 
             const added = await addToCart(data).unwrap()
 
@@ -51,7 +53,7 @@ const AddToCartBtn = ({price, id, stock }: {price:number, id: string, stock:numb
 
     const buyNowHandler = () => {
         if (!user.success) {
-            router.push('/auth/sign-in')
+            router.push(`/auth/sign-in?redirect=${path}`)
         } else {
             router.push(`/shipping-address?id=${id}&price=${price}`)
         }

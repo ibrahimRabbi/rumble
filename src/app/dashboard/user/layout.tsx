@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -7,9 +8,25 @@ import { CgProfile } from "react-icons/cg";
 import { PiShoppingCart } from "react-icons/pi";
 import { TiLocationArrowOutline } from "react-icons/ti";
 import { MdOutlineLogout } from "react-icons/md";
+import { deleteCookie } from "cookies-next/client";
+import { useRouter } from "next/navigation";
+import { useGetUserQuery } from "@/redux/api/baseApi";
+ 
 
 
 const layout = ({ children }: { children: ReactNode }) => {
+
+    const router = useRouter()
+    const {refetch,data:user} = useGetUserQuery({})
+
+    const logoutHandler = () => {
+        deleteCookie('accessToken')
+        refetch()
+        router.push('/')
+    }
+
+
+
     return (
         <div>
             <div className="min-h-screen flex justify-center items-center">
@@ -32,7 +49,7 @@ const layout = ({ children }: { children: ReactNode }) => {
                                     <CgProfile className="size-5" /> My account</Link></li>
                                 <li className="text-[16px]"><Link href='/dashboard/user/order'><PiShoppingCart className="size-5" /> orders</Link></li>
                                 <li className="text-[16px]"><Link className="flex items-center" href='/dashboard/user/address'><TiLocationArrowOutline className="size-[26px]"/>Deliver address</Link></li>
-                                <li className="text-[16px]"><button className="bg-red-100 p-2 text-red-600"><MdOutlineLogout className="size-5"/> Logout</button></li>
+                                <li className="text-[16px]"><button onClick={logoutHandler} className="bg-red-200 mt-5 p-2 text-red-600"><MdOutlineLogout className="size-5"/> Logout</button></li>
                             </div>
                         </ul>
                     </div>

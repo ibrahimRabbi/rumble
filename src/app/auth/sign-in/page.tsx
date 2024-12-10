@@ -1,15 +1,18 @@
+'use client'
 import Link from "next/link";
 import FxForm from "./_wrapper/FxForm";
 import FXInput from "./_wrapper/FXInput";
 import Image from "next/image";
 import logo from '@/assets/rumble-logo.png'
 import SignInProviderBtn from "./_wrapper/SignInProviderBtn";
+import { useParams, useSearchParams } from "next/navigation";
 
 
 
 
 const SignIn = () => {
-
+    const query = useSearchParams()
+    const redirect = query.get('redirect') || '/' 
 
     return (
         <section>
@@ -23,7 +26,7 @@ const SignIn = () => {
                     <SignInProviderBtn/>
                 </div>
 
-                <FxForm>
+                <FxForm redirect={redirect}>
                     <div className='mt-6 lg:w-1/2  mx-auto'>
                         <p className='text-[#323232] text-center text-2xl font-[700]'>Sign in to your Account</p>
                         <FXInput/>
