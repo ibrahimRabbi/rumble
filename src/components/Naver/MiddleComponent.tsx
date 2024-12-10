@@ -11,8 +11,8 @@ const MiddleComponent = () => {
             <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'mens' } }}>Mens</ActiveRoute></li>
             <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'womans' } }}>Woman</ActiveRoute></li>
             <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'kids' } }}>Kids</ActiveRoute></li>
-            <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'bag & shoes' } }}>Bag & shoes</ActiveRoute></li>
-            <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'electronics' } }}>Electronics</ActiveRoute></li>
+            <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'shoes' } }}>shoes</ActiveRoute></li>
+            <li className="hover:text-green-900 hover:scale-105"><ActiveRoute href={{ pathname: `/products/category`, query: { value: 'electronic' } }}>Electronics</ActiveRoute></li>
         </ul>
     );
 };

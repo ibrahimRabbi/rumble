@@ -13,9 +13,9 @@ import AddToCartBtn from "@/components/cart/AddToCartBtn";
 
 
 const SingleData = async ({params}:{params:{viewDetails:string}}) => {
-    
+   
     //const { viewDetails } = useParams()
-    const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${params?.viewDetails}`)
+    const fetchingSingleData = await fetch(`http://localhost:5000/api/products/get-products?id=${params?.viewDetails}`,{cache:'no-store'})
     const { response } = await fetchingSingleData.json()
      
             

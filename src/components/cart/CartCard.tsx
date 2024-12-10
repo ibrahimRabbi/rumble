@@ -5,6 +5,7 @@ import { useDeleteCartMutation } from '@/redux/api/baseApi';
 import toast from 'react-hot-toast';
 // import { useRouter } from 'next/navigation';
 import cartData from '../../lib/cartData';
+import Link from 'next/link';
 
 
 const CartCard = ({ data }: { data: any }) => {

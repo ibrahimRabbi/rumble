@@ -50,11 +50,11 @@ export const colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pi
 
 
 export const categoryData = [
-    { category: 'womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western', 't-shirt', 'pant', 'watchs', 'bags', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
+    { category: 'womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western','tops','t-shirt', 'pant', 'watchs', 'bags', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
 
     { category: 'mens', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'Jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'under-wear', 'perfume', 'belt', 'wallet'] },
 
-    { category: 'kids', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'belt'] },
+    { category: 'kids', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', 'full sleeve shirt', 'jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'belt'] },
 
     { category: 'Health and Beauty', subCategories: ["Hair Care", "Body Care"] },
 
@@ -69,18 +69,21 @@ export const categoryData = [
 
 
 
+
 export const BannerCategoryData = [
-    { icon: woman, name: 'womans & girl fashion' },
-    { icon: mens, name: 'mens & boys fashion' },
-    { icon: watchs, name: 'watchs & bags' },
-    { icon: health, name: 'health and beauty' },
-    { icon: household, name: 'household & stationery' },
-    { icon: kids, name: 'kids & baby' },
-    { icon: electronic, name: 'electronic accessories' },
-    { icon: art, name: 'art and craft' },
-    { icon: gadget, name: 'gadget & devices' },
+    { icon: woman, name: 'womans & girl fashion', category:'womans' },
+    { icon: mens, name: 'mens & boys fashion',category:'mens' },
+    { icon: watchs, name: 'watchs & bags', category: 'watchs and bags' },
+    { icon: health, name: 'health and beauty', category: 'health and beauty' },
+    { icon: household, name: 'household & stationery', category: 'household' },
+    { icon: kids, name: 'kids & baby', category: 'kids' },
+    { icon: electronic, name: 'electronic accessories', category: 'electronic' },
+    { icon: art, name: 'art and craft', category: 'art and craft' },
+    { icon: gadget, name: 'gadget & devices', category: 'devices' },
    ]
 
+
+//for fileting data
 export const products = [
     { category: 'mens', subCategory: 'T-shirt', name: "Mens T-Shirt" },
     { category: 'mens', subCategory: 'Jacket', name: 'Mens Jacket' },
@@ -103,7 +106,6 @@ export const category = [
     { name: 'Shoes', image: shoeas },
     { name: 'watch', image: watch },
     { name: 'jacket', image: bag },
-
 ]
 
 
