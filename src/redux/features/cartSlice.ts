@@ -44,7 +44,7 @@ export const cartSlice = createSlice({
         },
 
         resetQuantity: (state, payload) => {
-            state.quantity = payload.payload as number
+            state.quantity = payload.payload  
         }
 
          

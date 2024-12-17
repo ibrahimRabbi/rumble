@@ -25,9 +25,9 @@ const Footer = () => {
                 <div className="px-4">
                     <h4 className="text-lg font-semibold mb-4">Seller</h4>
                     <ul className="space-y-2">
-                        <li><Link href="#" className="hover:text-pink-600">Join as a seller</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Seller Registration</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">All Shops</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Join as a seller</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Seller Registration</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">All Shops</Link></li>
                     </ul>
                 </div>
 
@@ -36,8 +36,8 @@ const Footer = () => {
                     <h4 className="text-lg font-semibold mb-4">Shop Location</h4>
                     <address className="text-sm not-italic space-y-2">
                         <p>House No:913, Shyampur bottola, Jatrabari, Dhaka-3700, Bnagladesh</p>
-                        <p><Link href="tel:+8801723000909" className="hover:text-pink-600">+880 1309785530</Link></p>
-                        <p><Link href="mailto:shop@duhandar.com" className="hover:text-pink-600">rumble.wears@gmail.com</Link></p>
+                        <p><Link href="tel:+8801723000909" className="hover:text-green-600">+880 1309785530</Link></p>
+                        <p><Link href="mailto:shop@duhandar.com" className="hover:text-green-600">rumble.wears@gmail.com</Link></p>
                     </address>
                 </div>
 
@@ -45,27 +45,27 @@ const Footer = () => {
                 <div className="px-4">
                     <h4 className="text-lg font-semibold mb-4">Customer Care</h4>
                     <ul className="space-y-2">
-                        <li><Link href="#" className="hover:text-pink-600">Contact Us</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Order Process</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Payment Method</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Privacy Policy</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Shipping, Refund, and Return Policy</Link></li>
-                        <li><Link href="#" className="hover:text-pink-600">Terms & Conditions</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Contact Us</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Order Process</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Payment Method</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Privacy Policy</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Shipping, Refund, and Return Policy</Link></li>
+                        <li><Link href="#" className="hover:text-green-600">Terms & Conditions</Link></li>
                     </ul>
                 </div>
 
             </div>
 
             
-            <div className="border-t border-gray-300 bg-green-50 mt-8 pt-6">
+            <div className="border-t border-gray-100 bg-gray-200 mt-8 pt-6">
                 <div className="container mx-auto text-center space-y-4">
                     
                     <div className="flex justify-center space-x-4">
-                        <Link href="#" className="text-gray-600 hover:text-pink-600"><i className="fab fa-facebook"></i></Link>
-                        <Link href="#" className="text-gray-600 hover:text-pink-600"><i className="fab fa-twitter"></i></Link>
-                        <Link href="#" className="text-gray-600 hover:text-pink-600"><i className="fab fa-youtube"></i></Link>
-                        <Link href="#" className="text-gray-600 hover:text-pink-600"><i className="fab fa-instagram"></i></Link>
-                        <Link href="#" className="text-gray-600 hover:text-pink-600"><i className="fab fa-linkedin"></i></Link>
+                        <Link href="#" className="text-gray-600 hover:text-green-600"><i className="fab fa-facebook"></i></Link>
+                        <Link href="#" className="text-gray-600 hover:text-green-600"><i className="fab fa-twitter"></i></Link>
+                        <Link href="#" className="text-gray-600 hover:text-green-600"><i className="fab fa-youtube"></i></Link>
+                        <Link href="#" className="text-gray-600 hover:text-green-600"><i className="fab fa-instagram"></i></Link>
+                        <Link href="#" className="text-gray-600 hover:text-green-600"><i className="fab fa-linkedin"></i></Link>
                     </div>
 
                    

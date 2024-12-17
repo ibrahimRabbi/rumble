@@ -60,15 +60,17 @@ const OTPInput = ({ data, sendingOtp, setIsOpen }: { data: any, sendingOtp: numb
     const handleSubmit = async () => {
         const enteredOtp = parseInt(getOtpValue());
         const correctOtp = sendingOtp;
+
         if (enteredOtp === correctOtp) {
-            const fetching = await fetch('http://localhost:5000/api/verify', {
+            const fetching = await fetch(`http://localhost:5000/api/verify`, {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(data)
             })
             const response = await fetching.json()
-            if (response.accessToken) {
-                setCookie('accessToken', response?.accessToken)
+            console.log(response)
+            if (response?.accessToken) {
+                setCookie('accessToken', response?.accessToken, { maxAge: 7 * 24 * 60 * 60 })
                 setError(false);
                 toast.success('sign up successfully');
                 setIsOpen(false);

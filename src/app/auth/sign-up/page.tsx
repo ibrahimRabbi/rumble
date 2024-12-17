@@ -141,7 +141,7 @@ const Signup = () => {
                     </div>
                     <p className='mt-2 text-sm font-semibold text-center'>Already have an account? <Link href='/auth/sign-in' className='text-sky-500 font-bold'>Login</Link> </p>
                     <DialogModal data={data} sendingOtp={sendingOtp} isOpen={isOpen} setIsOpen={setIsOpen} />
-                    <input type="submit" value='Send OTP' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-12 rounded-lg font-semibold lg:w-1/2 w-full mx-auto block' />
+                    <input type="submit" value='SUBMIT' className='bg-[#ECE64A] hover:bg-[#dfd936] p-2 mt-12 rounded-lg font-semibold lg:w-1/2 w-full mx-auto block' />
                 </form>
             </div>
 

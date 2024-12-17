@@ -50,9 +50,9 @@ export const colors = ["Red", "Blue", "Green", "Yellow", "Orange", "Purple", "Pi
 
 
 export const categoryData = [
-    { category: 'womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western','tops','t-shirt', 'pant', 'watchs', 'bags', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
+    { category: 'womans', subCategories: ['Sharee', 'Borka', 'Hijab', "Kameez", 'Western', 'tops', 't-shirt', 'full sleeve shirt', 'pant', 'watchs', 'bags', 'hoodie', 'inner-Wear', 'shoes', 'Plazzos', 'Jewellery', 'Makeup', 'perfume'] },
 
-    { category: 'mens', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', ' full sleeve shirt', 'Jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'under-wear', 'perfume', 'belt', 'wallet'] },
+    { category: 'mens', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', 'full sleeve shirt', 'Jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'under-wear', 'perfume', 'belt', 'wallet'] },
 
     { category: 'kids', subCategories: ['t-shirt', 'jacket', 'hoodie', 'sweat shirt', 'pant', 'full sleeve shirt', 'jeans', 'shoes', "sunglass", 'shorts', 'punjabi', 'belt'] },
 
@@ -73,7 +73,7 @@ export const categoryData = [
 export const BannerCategoryData = [
     { icon: woman, name: 'womans & girl fashion', category:'womans' },
     { icon: mens, name: 'mens & boys fashion',category:'mens' },
-    { icon: watchs, name: 'watchs & bags', category: 'watchs and bags' },
+    { icon: watchs, name: 'watchs & bags', category: 'watchs bags' },
     { icon: health, name: 'health and beauty', category: 'health and beauty' },
     { icon: household, name: 'household & stationery', category: 'household' },
     { icon: kids, name: 'kids & baby', category: 'kids' },

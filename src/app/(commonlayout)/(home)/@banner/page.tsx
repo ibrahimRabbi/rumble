@@ -5,8 +5,9 @@ import BannerCategory from '@/components/category/BannerCategory';
 
 
 const Banner = () => {
+    
     return (
-        <section className={`w-[90%] lg:h-[465px] h-[170px] ml-7 lg:mx-auto mt-7 flex lg:grid ${style.banner} gap-10`}>
+        <section className={`w-[90%] lg:h-[465px] h-[170px] mx-auto lg:mt-7 mt-5 flex lg:grid ${style.banner} gap-10`}>
             <BannerCategory />
             <BannerSlider />
         </section>

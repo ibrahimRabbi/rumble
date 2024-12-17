@@ -6,9 +6,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-fade';
 import { FreeMode, Navigation } from 'swiper/modules';
 import Link from 'next/link';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
-import { useGetHotProductQuery } from '@/redux/api/baseApi';
 import Image from 'next/image';
 import nextBtn from '@/assets/icons/Right.png';
 import back from '@/assets/icons/Back.png'
@@ -16,11 +15,14 @@ import './hotDeal.css'
 
 
 
-const HotProducts = () => {
+const HotProducts = ({ data }: { data: object[] }) => {
 
     const swiperRef = useRef<SwiperType>();
-    const { data } = useGetHotProductQuery({})
+    const [browserWidth, setWidth] = useState(0)
 
+    useEffect(() => {
+        setWidth(window.innerWidth)
+    }, [browserWidth])
 
 
     return (
@@ -34,14 +36,14 @@ const HotProducts = () => {
                 <Swiper
                     freeMode={true}
                     spaceBetween={60}
-                    slidesPerView={window?.innerWidth > 470 ? 4 : 1}
+                    slidesPerView={browserWidth > 470 ? 4 : 1}
                     onBeforeInit={(swiper) => {
                         swiperRef.current = swiper;
                     }}
                     modules={[FreeMode, Navigation]}>
 
                     {
-                        data?.response?.map((v: any) => {
+                        data?.map((v: any) => {
                             return (
 
                                 <SwiperSlide key={v?._id}>
@@ -53,10 +55,13 @@ const HotProducts = () => {
                                             <div className='p-2'>
                                                 <p className="bg-purple-400 text-[20px] p-1 rounded-lg">{v?.offer}</p>
                                             </div>
+
                                             <div className={`glassmorphisom w-full py-4 px-2 flex justify-between items-center`}>
                                                 <p className={`text-zinc-950 text-sm font-semibold`}>{v?.title?.slice(0, 15)}...</p>
-                                                <Link className='text-green-900 text-sm  font-bold flex items-center gap-1' href='/'><FaRegEye />View Item </Link>
+                                                <div className='text-green-900 text-sm  font-bold flex items-center gap-1'><FaRegEye />View Item </div>
                                             </div>
+
+
                                         </div>
                                     </Link>
                                 </SwiperSlide>

@@ -2,47 +2,57 @@ import { Tcart } from '@/components/cart/AddToCartBtn'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getCookie } from 'cookies-next/client'
 
-
+// https://rumble-server.vercel.app/api
 
 export const baseApi = createApi({
     reducerPath: 'baseApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://localhost:5000/api`,
+        baseUrl: 'http://localhost:5000/api',
         credentials: 'include',
         prepareHeaders: (headers) => {
             const token = getCookie('accessToken')
             headers.set('authorization', token as string)
+            headers.set('Content-Type', 'application/json')
         }
     }),
-    tagTypes: ['product','cart', 'auth','order'],
+    tagTypes: ['product', 'cart', 'auth', 'order'],
     endpoints: (builder) => ({
 
+        getSingleData: builder.query({
+            query: (id) => {
+                return {
+                    url: `/products/get-products?id=${id}`
+                }
+            },
+            providesTags: ['product']
+        }),
 
         addProduct: builder.mutation({
             query: (payload) => {
                 return {
                     url: '/products/insert-product',
                     method: 'POST',
-                    body : payload
+                    body: payload
                 }
             },
-            invalidatesTags:['product']
+            invalidatesTags: ['product']
         }),
 
         getSubProduct: builder.query({
             query: (payload) => {
                 return {
                     url: `products/get-products?category=${payload}`
-               } 
+                }
             }
         }),
 
-        getHotProduct: builder.query({
+        newArrivalProduct: builder.query({
             query: () => {
                 return {
-                    url: `products/get-products?deal='true'&limit=20`
+                    url: `products/get-products?newArrival=true&limit=10`
                 }
-            }
+            },
+            providesTags: ['product']
         }),
 
         addToCart: builder.mutation({
@@ -85,7 +95,7 @@ export const baseApi = createApi({
             },
             invalidatesTags: ['auth']
         }),
-        
+
         signIn: builder.mutation({
             query: (payload) => {
                 return {
@@ -114,7 +124,7 @@ export const baseApi = createApi({
                     body: payload
                 }
             },
-            invalidatesTags:['auth']
+            invalidatesTags: ['auth']
         }),
 
         deleteAddress: builder.mutation({
@@ -122,7 +132,7 @@ export const baseApi = createApi({
                 return {
                     url: '/delete-address',
                     method: 'PATCH',
-                    body : payload
+                    body: payload
                 }
             },
             invalidatesTags: ['auth']
@@ -132,10 +142,10 @@ export const baseApi = createApi({
                 return {
                     url: '/order/create-order',
                     method: 'POST',
-                    body : payload
+                    body: payload
                 }
             },
-            invalidatesTags : ['order']
+            invalidatesTags: ['order']
         }),
         getOrder: builder.query({
             query: () => {
@@ -143,22 +153,22 @@ export const baseApi = createApi({
                     url: '/order/get-order',
                 }
             },
-            providesTags : ['order']
+            providesTags: ['order']
         }),
 
         callRequest: builder.mutation({
             query: (userId) => {
                 return {
-                    url:'/request/insert-call',
+                    url: '/request/insert-call',
                     method: 'POST',
-                    body:{user:userId}
+                    body: { user: userId }
                 }
             }
         })
-         
+
 
     }),
 })
 
 
-export const {useAddProductMutation, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery,useAddNewAddressMutation,useDeleteAddressMutation,useGetHotProductQuery,useCreateOrderMutation,useGetOrderQuery,useCallRequestMutation } = baseApi
+export const { useAddProductMutation, useNewArrivalProductQuery, useGetSubProductQuery, useAddToCartMutation, useDeleteCartMutation, useGetCartQuery, useSignUpMutation, useSignInMutation, useGetUserQuery, useAddNewAddressMutation, useDeleteAddressMutation, useCreateOrderMutation, useGetOrderQuery, useGetSingleDataQuery, useCallRequestMutation } = baseApi

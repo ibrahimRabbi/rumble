@@ -1,12 +1,13 @@
 'use client'
+import useCartData from '@/lib/cartData';
 import Link from 'next/link';
-import cartData from '@/lib/cartData';
+
 
 
 
 const Summery = () => {
-     
-    const { totalQuantity, amount, discount, delivaryCharge, vat, subTotal, data } = cartData()
+
+    const { totalQuantity, amount, discount, delivaryCharge, vat, subTotal, data } = useCartData()
 
 
     return (

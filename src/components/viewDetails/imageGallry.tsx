@@ -1,12 +1,12 @@
- 'use client'
+'use client'
 import ReactImageGallery from 'react-image-gallery';
 
 const ImageGallry = ({ detailPhoto, coverPhoto }: { detailPhoto: string[], coverPhoto: string }) => {
-    
 
-    let images:any = [{ original:coverPhoto, thumbnail: coverPhoto }]
-    const img = detailPhoto?.forEach(v=>images.push({original:v,thumbnail:v}))
-    
+
+    let images: any = [{ original: coverPhoto, thumbnail: coverPhoto }]
+    detailPhoto?.forEach(v => images.push({ original: v, thumbnail: v }))
+
 
 
     return (

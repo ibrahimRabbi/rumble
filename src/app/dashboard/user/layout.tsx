@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ReactNode } from "react";
 import logo from '@/assets/rumble-logo.png'
-import { AiOutlineHome } from "react-icons/ai";
+import { AiOutlineBars, AiOutlineHome } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { PiShoppingCart } from "react-icons/pi";
 import { TiLocationArrowOutline } from "react-icons/ti";
@@ -11,7 +11,6 @@ import { MdOutlineLogout } from "react-icons/md";
 import { deleteCookie } from "cookies-next/client";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/api/baseApi";
- 
 
 
 const layout = ({ children }: { children: ReactNode }) => {
@@ -29,15 +28,20 @@ const layout = ({ children }: { children: ReactNode }) => {
 
     return (
         <div>
-            <div className="min-h-screen flex justify-center items-center">
-
+            <div className="min-h-screen flex justify-center items-start">
                 <div className="drawer lg:drawer-open">
                     <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                    <div className="drawer-content ml-12 mt-10 w-[85%]">
+
+                    <div className="drawer-content lg:ml-12 mt-5 lg:mt-10 lg:w-[85%] w-[92%] mx-auto"> 
+                        <div className="flex justify-between items-center lg:hidden">
+                            <Image src={logo} width={100} alt='logo'/>
+                            <label htmlFor="my-drawer-2">
+                                <div className="bg-green-50 border border-green-400 p-1 rounded-md">
+                                    <AiOutlineBars className="size-8 text-green-600" />
+                                </div>
+                            </label>
+                        </div>
                         {children}
-                        {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">
-                            Open drawer
-                        </label> */}
                     </div>
                     <div className="drawer-side">
                         <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label>

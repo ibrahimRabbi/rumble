@@ -4,7 +4,7 @@ import ShippingSummery from '@/components/Summery/ShippingSummery';
 import { useDeleteAddressMutation, useGetUserQuery } from '@/redux/api/baseApi';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React, { Suspense, useState } from 'react';
 import toast from 'react-hot-toast';
 import { IoMdAdd } from "react-icons/io";
 import bekash from '@/assets/payment/bekash.png'
@@ -76,74 +76,92 @@ const page = () => {
 
 
     return (
-        <section className='lg:w-[90%] min-h-screen mx-auto lg:my-8'>
-            {/* responsive */}
-            <RprocedToPay shippingDetails={details as DeliverAddress} />
+       
+            <section className='lg:w-[90%] min-h-screen mx-auto lg:my-8'>
+                {/* responsive */}
+            <Suspense fallback={<p className='text-2xl'>loading...</p>}>
+                <RprocedToPay shippingDetails={details as DeliverAddress} />
+            </Suspense>
 
-            <p className='text-[#493115] text-lg lg:mt-0 mt-8 font-semibold lg:text-start text-center'>Choose a shipping Address & Details</p>
+                <p className='text-[#493115] text-lg lg:mt-0 mt-8 font-semibold lg:text-start text-center'>Choose a shipping Address & Details</p>
 
-            <div className='flex justify-between items-start mt-4'>
-                <div className='lg:w-[68%] w-full'>
+                <div className='flex justify-between items-start mt-4'>
+                    <div className='lg:w-[68%] w-full'>
 
-                    <div className='lg:w-full w-[95%] mx-auto lg:border lg:p-5 rounded-md'>
+                        <div className='lg:w-full w-[95%] mx-auto lg:border lg:p-5 rounded-md'>
 
-                        <div className='hidden lg:block'>
-                            <div className='flex justify-between items-center'>
-                                <p className='text-lg font-semibold'>Your Details</p>
-                                <Link href='/' className='text-sky-700 font-semibold block'>Shipping to more than one address?</Link>
+                            <div className='hidden lg:block'>
+                                <div className='flex justify-between items-center'>
+                                    <p className='text-lg font-semibold'>Your Details</p>
+                                    <Link href='#' className='text-sky-700 font-semibold block'>Shipping to more than one address?</Link>
+                                </div>
+                                <hr className='mt-1' />
                             </div>
-                            <hr className='mt-1' />
-                        </div>
+                        <Suspense fallback={<p>loading...</p>}>
 
-                        <div className='flex flex-col gap-3'>
-                            {
-                                user?.response?.deliverAddress?.map((v: DeliverAddress) => {
-                                    return (
-                                       
-                                            <div key={v?._id} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
-                                                <div className='flex items-center gap-2'>
-                                                    <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
+                            <div className='flex flex-col gap-3'>
+                                {
+                                    user?.response?.deliverAddress?.length > 0 ?
+                                        user?.response?.deliverAddress?.map((v: DeliverAddress) => {
+                                            return (
 
-                                                    <p className='font-semibold'>{v?.name}</p>
-                                                    <p className=''>{v?.phone}</p>
+                                                <div key={v?._id} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
+                                                    <div className='flex items-center gap-2'>
+                                                        <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
 
-                                                    <p className='lg:pl-4'>{v?.address}, <span>{v?.district}</span></p>
+                                                        <p className='font-semibold'>{v?.name}</p>
+                                                        <p className=''>{v?.phone}</p>
+
+                                                        <p className='lg:pl-4'>{v?.address}, <span>{v?.district}</span></p>
+                                                    </div>
+                                                    <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
                                                 </div>
-                                                <button onClick={() => deleteHandler(v)} className='text-sky-600 underline'>Delete</button>
-                                            </div>
-                                    )
-                                })
-                            }
+                                            )
+                                        }) : <div className='flex items-center justify-center flex-col mt-5 gap-2'>
+                                            <div className='text-sm font-semibold text-zinc-600'>you havent got any shipping details please add your details</div>
+                                            <button onClick={() => setIsOpen(true)} className='flex gap-1 items-center'>
+                                                <IoMdAdd className='text-xl' />
+                                                <p className='text-sky-600 text-[17px]'>Add New Details</p>
+                                            </button>
+                                        </div>
+                                }
+                            </div>
+</Suspense>
+
+                            <button onClick={() => setIsOpen(true)} className='flex gap-1 mt-7 items-center'>
+                                <IoMdAdd className='text-xl' />
+                                <p className='text-sky-600 text-[17px]'>Add New Details</p>
+                            </button>
+                        <Suspense fallback={<p className='text-2xl'>loading...</p>}>
+                            <AddDetailsDialog isOpen={isOpen} setIsOpen={setIsOpen} />
+                        </Suspense>
+
+
                         </div>
 
-                        <button onClick={() => setIsOpen(true)} className='flex gap-1 mt-7 items-center'>
-                            <IoMdAdd className='text-xl' />
-                            <p className='text-sky-600 text-[17px]'>Add New Details</p>
-                        </button>
-                        <AddDetailsDialog isOpen={isOpen} setIsOpen={setIsOpen} />
 
-
-                    </div>
-
-
-                    <div className='flex justify-center items-center gap-2 lg:my-10 mt-20'>
-                        <p className='font-semibold text-zinc-700'>We Are Accept :</p>
-                        <div className='flex justify-center gap-5 items-center'>
-                            <Image width={30} src={bekash} alt='bekash' />
-                            <Image width={36} src={nagad} alt='nagad' />
-                            <Image width={30} src={masterCard} alt='master card' />
-                            <Image width={34} src={visaCard} alt='visa card' />
+                        <div className='flex justify-center items-center gap-2 lg:my-10 mt-20'>
+                            <p className='font-semibold text-zinc-700'>We Are Accept :</p>
+                            <div className='flex justify-center gap-5 items-center'>
+                                <Image width={30} src={bekash} alt='bekash' />
+                                <Image width={36} src={nagad} alt='nagad' />
+                                <Image width={30} src={masterCard} alt='master card' />
+                                <Image width={34} src={visaCard} alt='visa card' />
+                            </div>
                         </div>
-                    </div>
 
-                </div>
+                    </div>
 
 
                 <div className='hidden lg:block lg:w-[28%] border'>
-                    <ShippingSummery price={price} ProductId={productId} shippingDetails={details as DeliverAddress}/>
+                    <Suspense fallback={<p className='text-2xl'>loading...</p>}>
+                        <ShippingSummery price={price} ProductId={productId} shippingDetails={details as DeliverAddress} />
+                    </Suspense>
+                       
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
     );
 };
 

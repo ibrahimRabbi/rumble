@@ -14,10 +14,10 @@ const page = () => {
 
 
     const queryData = query.get('value')
-    
+
     const [data, setData] = useState([])
     const [isChecked, setIsChecked] = useState('')
-    const [isLoading,setIsLoading] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
 
 
@@ -30,7 +30,7 @@ const page = () => {
                 .then(res => {
                     setData(res?.response)
                     setIsLoading(false)
-                } )
+                })
         }
         if (path.pathName === 'category' && queryData) {
             fetch(`http://localhost:5000/api/products/get-products?category=${queryData}`)
@@ -41,7 +41,7 @@ const page = () => {
                 })
         }
 
-      if(!queryData) {
+        if (!queryData) {
             fetch(`http://localhost:5000/api/products/get-products?limit=12`)
                 .then(res => res.json())
                 .then(res => {
@@ -50,7 +50,7 @@ const page = () => {
                 })
         }
 
-    }, [queryData,path.pathName])
+    }, [queryData, path.pathName])
 
 
     const checkHandler = async (isChecked: boolean, value: any) => {
@@ -108,18 +108,27 @@ const page = () => {
 
 
     return (
+
         <section className='min-h-screen  lg:my-10 my-3'>
-            <Rcategory genderhandler={genderhandler} sorthandler={sorthandler} />
+            <Suspense fallback={<p className='text-2xl'>loading...</p>}>
+                <Rcategory genderhandler={genderhandler} sorthandler={sorthandler} />
+            </Suspense>
+
 
 
             <div className={`flex justify-between items-start mt-4 w-[90%] mx-auto`}>
 
-                <div className='hidden lg:block lg:w-[25%]'> <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} /></div>
-                <Suspense fallback={<p className='text-3xl text-center'>Loading....</p>}>
+                <div className='hidden lg:block lg:w-[25%]'>
+                    <Suspense fallback={<p className='text-2xl'>Loading...</p>}>
+                        <Filter genderhandler={genderhandler} isChecked={isChecked} sorthandler={sorthandler} checkHandler={checkHandler} />
+                    </Suspense>
+                </div>
+                <Suspense fallback={<p className='text-3xl text-center'>Loading..</p>}>
                     <Displayed data={data} isLoading={isLoading} />
                 </Suspense>
             </div>
         </section>
+
     );
 };
 

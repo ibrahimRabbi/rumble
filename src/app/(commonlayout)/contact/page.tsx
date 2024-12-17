@@ -1,7 +1,7 @@
 'use client'
 import { FaWhatsapp } from 'react-icons/fa';
 import { PiMessengerLogo } from "react-icons/pi";
-import { useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 import Link from 'next/link';
 import { RiCustomerService2Line } from "react-icons/ri";
 import { useCallRequestMutation, useGetUserQuery } from '@/redux/api/baseApi';
@@ -45,22 +45,25 @@ const Contact = () => {
                     <span className="text-[16px] font-semibold text-zinc-800">Rumble Assistant</span>
                 </button>
 
-                <Link href='https://wa.me/01309785530' target='_blank' className="hover:bg-green-100 py-2 px-12 border border-[#dfc9bb] flex items-center gap-2 rounded-lg">
-                    <FaWhatsapp className="text-[24px] text-green-700 mx-auto" />
-                    <span className="text-[16px] font-semibold text-zinc-800">WhatsApp</span>
-                </Link>
+                <Suspense>
+                    <Link href='https://wa.me/01309785530' target='_blank' className="hover:bg-green-100 py-2 px-12 border border-[#dfc9bb] flex items-center gap-2 rounded-lg">
+                        <FaWhatsapp className="text-[24px] text-green-700 mx-auto" />
+                        <span className="text-[16px] font-semibold text-zinc-800">WhatsApp</span>
+                    </Link>
 
-                <Link href='https://m.me/rumble.wears' target='_blank' className=" py-2 px-12 border border-[#dfc9bb] flex items-center gap-2 rounded-lg hover:bg-green-100">
-                    <PiMessengerLogo className="text-[24px] text-sky-600 mx-auto" />
-                    <span className="text-[16px] font-semibold text-zinc-800">Messenger</span>
-                </Link>
+                    <Link href='https://m.me/rumble.wears' target='_blank' className=" py-2 px-12 border border-[#dfc9bb] flex items-center gap-2 rounded-lg hover:bg-green-100">
+                        <PiMessengerLogo className="text-[24px] text-sky-600 mx-auto" />
+                        <span className="text-[16px] font-semibold text-zinc-800">Messenger</span>
+                    </Link>
+               </Suspense>
             </div>
 
             <div className='divider w-[70%] mx-auto mt-10'>or</div>
 
-            <Email setTitle={setTitle} setDis={setDis} setOpen={setOpen}  />
-
-            <ConfirmDialog isOpen={isOpen as boolean} setOpen={setOpen} title={title} description={description} />
+            <Suspense>
+                <Email setTitle={setTitle} setDis={setDis} setOpen={setOpen} />
+                <ConfirmDialog isOpen={isOpen as boolean} setOpen={setOpen} title={title} description={description} />
+            </Suspense>
             
         </section>
     );

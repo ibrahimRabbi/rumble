@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 const Profile = () => {
@@ -12,7 +13,8 @@ const Profile = () => {
             <div className="flex space-x-6">
                 {/* User Info */}
                 <div className="w-1/3 border text-center">
-                    <img
+                    <Image
+                        width={110}
                         src="https://via.placeholder.com/100"
                         alt="User Avatar"
                         className="w-24 h-24 rounded-full mx-auto"

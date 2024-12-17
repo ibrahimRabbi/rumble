@@ -39,7 +39,7 @@ const page = () => {
    
 
     return (
-        <section>
+        <section className='mt-7 lg:mt-0'>
             <div>
                 <p className='text-2xl text-zinc-950 font-semibold'>My address</p>
                 <p className='text-sm text-zinc-700'>address thats i use during order</p>

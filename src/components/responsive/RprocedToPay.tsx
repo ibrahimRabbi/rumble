@@ -1,13 +1,12 @@
-import cartData from "@/lib/cartData";
-import Link from "next/link";
 import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { DeliverAddress } from "@/app/(commonlayout)/shipping-address/page";
+import useCartData from "@/lib/cartData";
 
 
 const RprocedToPay = ({ shippingDetails }: { shippingDetails: DeliverAddress }) => {
-    const { subTotal, data } = cartData()
+    const { subTotal, data } = useCartData()
     const router = useRouter()
     const detailsLength = Object.keys(shippingDetails).length
 

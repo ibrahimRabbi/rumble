@@ -6,7 +6,7 @@ import { useAppSelector } from "@/redux/hook";
 
 
 
-const cartData = () => {
+const useCartData = () => {
 
     const { data: user } = useGetUserQuery({})
     const { data, refetch, isLoading } = useGetCartQuery(user?.response?.email)
@@ -35,4 +35,4 @@ const cartData = () => {
 
 };
 
-export default cartData;
+export default useCartData;

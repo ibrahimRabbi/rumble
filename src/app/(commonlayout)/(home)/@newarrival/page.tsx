@@ -8,7 +8,9 @@ const NewArrival = async () => {
     return (
         <section className='w-[90%] mx-auto lg:mt-20 mt-16'>
             <Title title='New Arrival' description='recent stock and new arrival items' />
-                <Products /> 
+            <Suspense fallback={<p>loading</p>}>
+                <Products />
+            </Suspense> 
         </section>
     );
 };

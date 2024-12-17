@@ -1,12 +1,15 @@
+import { getUser } from "@/lib/service";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaHeartbeat } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
  
 
 
-const Heading = () => {
+const Heading = async () => {
 
+    const user = await getUser()
 
     return (
         <div className='py-1 hidden lg:flex bg-green-50 border-b border-[#ebeaea] text-zinc-700 font-semibold text-sm'>
@@ -23,7 +26,7 @@ const Heading = () => {
                     </div>
                     <div className="divider divider-horizontal"></div>
                     <div>
-                        <Link href='/contact' className='lg:flex items-center gap-2'>
+                        <Link href={user?.success ? '/contact' : `auth/sign-in?redirect=/contact`} className='lg:flex items-center gap-2'>
                              <RiCustomerService2Line className="size-7"/>
                         </Link>
                     </div>

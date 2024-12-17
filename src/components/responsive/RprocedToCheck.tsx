@@ -1,13 +1,14 @@
-import cartData from "@/lib/cartData";
+'use client'
+import useCartData from "@/lib/cartData";
 import Link from "next/link";
- 
 
- 
+
+
 
 const RprocedToCheck = () => {
 
-    const { subTotal, data } = cartData()
-    
+    const { subTotal, data } = useCartData()
+
     return (
         <div className='lg:hidden shadow-lg block sticky top-0 z-50 bg-white p-4'>
             <p className="text-[21px] text-gray-900 font-semibold rounded-lg">Sub Total : {subTotal}৳</p>

@@ -1,18 +1,19 @@
 import { DeliverAddress } from '@/app/(commonlayout)/shipping-address/page';
-import cartData from '@/lib/cartData';
+
 import React from 'react';
 import { Button } from '../ui/button';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from '@/redux/hook';
+import useCartData from '@/lib/cartData';
 
 
 
 
-const ShippingSummery = ({ price, ProductId, shippingDetails }: { price:string, ProductId:string, shippingDetails:DeliverAddress }) => {
+const ShippingSummery = ({ price, ProductId, shippingDetails }: { price: string, ProductId: string, shippingDetails: DeliverAddress }) => {
 
     const { quantity } = useAppSelector(state => state.cart)
-    const { totalQuantity, amount, discount, vat, delivaryCharge, subTotal } = cartData()
+    const { totalQuantity, amount, discount, vat, delivaryCharge, subTotal } = useCartData()
     const router = useRouter()
     const detailsLength = Object.keys(shippingDetails).length
 
@@ -22,9 +23,9 @@ const ShippingSummery = ({ price, ProductId, shippingDetails }: { price:string, 
 
 
 
-   
-    
-   
+
+
+
 
 
 
@@ -36,13 +37,13 @@ const ShippingSummery = ({ price, ProductId, shippingDetails }: { price:string, 
                 router.push(`/payment?address=${shippingDetails?.address}&district=${shippingDetails?.district}&phone=${shippingDetails?.phone}&name=${shippingDetails?.name}&subtotal=${BuyNowTotal}&productId=${ProductId}`)
             } else {
                 router.push(`/payment?address=${shippingDetails?.address}&district=${shippingDetails?.district}&phone=${shippingDetails?.phone}&name=${shippingDetails?.name}`)
-           }
+            }
         }
     }
 
 
 
-    
+
 
     return (
         <div className='h-[430px] lg:sticky p-5 top-28'>

@@ -32,7 +32,7 @@ const Products = ({ data, loading }: { data: any, loading: boolean }) => {
                         <div className='text-xl flex font-semibold text-zinc-800'>did not find products <span> ☹️</span></div>
                         <Link href='/products/search' className='bg-green-400 p-2 rounded-md border hover:bg-green-500 font-semibold text-zinc-800'>See All</Link>
                     </div> :
-                    <div className='lg:w-[72%] grid grid-cols-2 lg:grid-cols-4 gap-8'>
+                    <div className='lg:w-[72%] grid grid-cols-2 lg:grid-cols-4 lg:gap-8 gap-6'>
                         {
 
                             data?.map((data: any) => <Card key={data?._id} data={data} />)

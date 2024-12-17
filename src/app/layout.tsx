@@ -3,9 +3,6 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/lib/Provider";
-import emailjs from '@emailjs/browser';
-import { ReactNode } from "react";
-
 
 
 
@@ -22,7 +19,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Rumble",
-  description: "rumble cloth fashion",
+  description: "rumble cloth fashion mens item hoodie bangladesh",
 };
 
 export default function RootLayout({
@@ -33,7 +30,7 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-         
+        
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >

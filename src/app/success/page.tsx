@@ -5,7 +5,7 @@ import Image from "next/image";
 const OrderSuccess = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-lg text-center ml-10">
+            <div className="bg-white p-6 rounded-lg shadow-lg text-center w-[90%] lg:w-[33%]">
                 <div className="flex items-center justify-center mx-auto">
                     <Image width={90} src={basket} alt="order success" />
                 </div>

@@ -1,9 +1,9 @@
 'use client'
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, Suspense } from 'react';
 
-const ActiveRoute = ({ children, href }: { children: ReactNode, href: string | any }) => {
+const ActiveRoute = ({ children, href }: { children: ReactNode, href:{pathname:string,query:{value:string}} }) => {
     
     const pathname = usePathname();  
     const query = useSearchParams().toString();
@@ -14,9 +14,12 @@ const ActiveRoute = ({ children, href }: { children: ReactNode, href: string | a
      
 
     
-    return <Link className={`${matching ? 'text-green-800 scale-110' : ''} bg-black`} href={href}>
-        {children}
-    </Link>
+    return <Suspense fallback={<p className='text-2xl'>loading...</p>}>
+        <Link className={`${matching ? 'text-green-800 scale-110' : ''} bg-black`} href={href}>
+            {children}
+        </Link>
+    </Suspense>
+
 };
 
 export default ActiveRoute;

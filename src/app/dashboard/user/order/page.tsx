@@ -1,5 +1,5 @@
 'use client'
-import {Table,TableBody,TableCaption,TableCell,TableHead,TableHeader,TableRow,} from "@/components/ui/table"
+import { Table, TableBody, TableCaption, TableCell, TableHead, TableHeader, TableRow, } from "@/components/ui/table"
 import { Input } from '@/components/ui/input';
 import { IoSearch } from 'react-icons/io5';
 import { useRouter } from "next/navigation";
@@ -12,26 +12,26 @@ import { getCookie } from "cookies-next/client";
 
 const page = () => {
     const router = useRouter()
-   const token =  getCookie('accessToken')
+    const token = getCookie('accessToken')
     const { data } = useGetOrderQuery({})
     const [orderData, setorderData] = useState(data?.response)
 
     if (data?.message === 'jwt expired') {
         toast.error('login expired')
         router.push('/auth/sign-in')
-    }  
+    }
 
 
     useEffect(() => {
-       fetch(`http://localhost:5000/api/order/get-order`, {
+        fetch(`http://localhost:5000/api/order/get-order`, {
             method: 'GET',
             headers: { 'authorization': token as string },
         })
-       .then(res=>res.json())  
-        .then(res=>setorderData(res?.response))
-    },[orderData])
+            .then(res => res.json())
+            .then(res => setorderData(res?.response))
+    }, [orderData, token])
 
-     
+
     const searchHandler = async (value: any) => {
         const fetching = await fetch(`http://localhost:5000/api/order/get-order?search=${value.target.value}`, {
             method: 'GET',
@@ -43,17 +43,17 @@ const page = () => {
 
 
     return (
-        <section>
+        <section className='mt-7 lg:mt-0'>
             <div>
                 <p className='text-2xl text-zinc-950 font-semibold'>My orders</p>
                 <p className='text-sm text-zinc-700'>order last 90 days</p>
             </div>
             <div className="mt-8 flex justify-end items-end">
-                <div className="relative w-[30%]">
-                <Input onChange={searchHandler} className="w-full" placeholder="search by order ID..."/>
+                <div className="relative lg:w-[30%] w-1/2">
+                    <Input onChange={searchHandler} className="w-full" placeholder="search by order ID..." />
                     <IoSearch className="absolute top-3 right-2 z-10" />
                 </div>
-           </div>
+            </div>
             <Table className='w-full mx-auto mt-5'>
                 <TableCaption>A list of your last 90 days order</TableCaption>
                 <TableHeader>
@@ -68,7 +68,7 @@ const page = () => {
                 </TableHeader>
                 <TableBody>
                     {
-                        orderData?.map((v:any) => {
+                        orderData?.map((v: any) => {
                             return (
                                 <TableRow key={v?._id}>
                                     <TableCell className="font-medium">{v?.orderId}</TableCell>

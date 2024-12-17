@@ -3,22 +3,22 @@ import { Input } from "../ui/input";
 import { IoSearch } from "react-icons/io5";
 import { FaRegUser } from "react-icons/fa";
 import Link from "next/link";
-import cartData from "../../lib/cartData";
+
 import { useRouter } from "next/navigation";
 import { useGetUserQuery } from "@/redux/api/baseApi";
+import useCartData from "@/lib/cartData";
 
 
 
 const LeftComponent = () => {
 
-    const { totalQuantity } = cartData()
+    const { totalQuantity } = useCartData()
     const { data: user } = useGetUserQuery({})
     const router = useRouter()
 
     const separate = user?.response?.name.split(' ')
-    
 
-    const searchHandler = (value:any) => {
+    const searchHandler = (value: any) => {
         router.push(`/products/search?value=${value.target.value}`)
     }
 
@@ -46,8 +46,8 @@ const LeftComponent = () => {
 
             </Link>
 
-            <Link className="flex items-center gap-1" href='/dashboard/user/profile'>
-                <FaRegUser className="text-[22px]"/>
+            <Link className="flex items-center gap-1" href={user?.success ? '/dashboard/user/profile' : `auth/sign-in?redirect=/dashboard/user/profile`}>
+                <FaRegUser className="text-[22px]" />
                 <p className="text-sm lowercase">{separate ? separate[1] : ''}</p>
             </Link>
         </div>
