@@ -13,7 +13,7 @@ const Navber = () => {
 
 
     return (
-        <nav className="w-full lg:py-0 py-2 lg:bg-slate-50">
+        <nav className="w-full lg:py-0 py-2 lg:bg-white shadow-md">
             <Heading />
 
 
@@ -23,10 +23,10 @@ const Navber = () => {
                 <MiddleComponent />
                 <LeftComponent />
 
-                <RnavLeft/>
+                <RnavLeft />
             </div>
 
-           <Rsearch/>
+            <Rsearch />
 
         </nav>
     );

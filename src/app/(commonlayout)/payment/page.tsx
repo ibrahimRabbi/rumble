@@ -29,26 +29,25 @@ const page = () => {
     const buyNowsubtotal = query.get('subtotal')
     const productId = query.get('productId')
 
-    
+
 
     const orderData = {
         email: user?.response?.email,
+        userId: user?.response?._id,
         items: data?.response,
         totalQuantity,
         deliverDetails: { name, number, address, district },
         amount: subTotal,
-        size, color
     }
 
 
     const buyNowOrderData = {
         email: user?.response?.email,
-        items: productId,
+        userId: user?.response?._id,
+        items: [{ productId, quantity, color, size }],
         totalQuantity: quantity,
         deliverDetails: { name, number, address, district },
         amount: buyNowsubtotal,
-        size,
-        color,
     }
 
 
@@ -66,6 +65,7 @@ const page = () => {
             }
         } else {
             const creating = await createOrder(orderData).unwrap()
+            console.log(creating)
             if (creating?.response.length > 1) {
                 toast.success('order successfull!')
                 refetch()
@@ -125,7 +125,7 @@ const page = () => {
                             </p>
                         </div>
                     </div>
-            </Suspense>
+                </Suspense>
             </div>
 
 

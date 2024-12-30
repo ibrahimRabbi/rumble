@@ -7,7 +7,7 @@ import { Suspense, } from 'react';
 
 const Products = async () => {
 
-    const fetching = await fetch(`http://localhost:5000/api/products/get-products/?newArrival=true&limit=10`)
+    const fetching = await fetch(` http://localhost:5000/api/products/get-products/?newArrival=true&limit=10`)
     const data = await fetching.json()
 
 

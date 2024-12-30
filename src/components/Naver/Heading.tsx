@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { FaHeartbeat } from "react-icons/fa";
 import { HiHashtag } from "react-icons/hi";
 import { RiCustomerService2Line } from "react-icons/ri";
- 
+
 
 
 const Heading = async () => {
@@ -12,7 +12,7 @@ const Heading = async () => {
     const user = await getUser()
 
     return (
-        <div className='py-1 hidden lg:flex bg-green-50 border-b border-[#ebeaea] text-zinc-700 font-semibold text-sm'>
+        <div className='py-1 hidden lg:flex bg-slate-50 text-zinc-800 font-semibold text-sm'>
             <div className='w-[90%] mx-auto flex justify-between items-center'>
                 <div className='lg:flex items-center gap-1 font-semibold hidden'>
                     <HiHashtag className="text-lg" />
@@ -27,15 +27,15 @@ const Heading = async () => {
                     <div className="divider divider-horizontal"></div>
                     <div>
                         <Link href={user?.success ? '/contact' : `auth/sign-in?redirect=/contact`} className='lg:flex items-center gap-2'>
-                             <RiCustomerService2Line className="size-7"/>
+                            <RiCustomerService2Line className="size-7" />
                         </Link>
                     </div>
-                     
+
                     <div className="divider divider-horizontal"></div>
                     <div className="flex flex-row-reverse items-center">
                         <div className="flex text-sm flex-col-reverse items-center">
                             <span>৳ BDT</span>
-                        </div>   
+                        </div>
                     </div>
 
                 </div>

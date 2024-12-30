@@ -17,7 +17,7 @@ const CartCard = ({ data }: { data: any }) => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/cart/update-cart/${data?._id}`, {
+        fetch(` http://localhost:5000/api/cart/update-cart/${data?._id}`, {
             method: 'PATCH',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ quantity })
@@ -109,7 +109,7 @@ const CartCard = ({ data }: { data: any }) => {
                         </div>
 
                         <button onClick={deleteHandler}>
-                        <FaTrashAlt className="text-[40px] text-red-800 bg-red-200 p-2 rounded-lg" />
+                            <FaTrashAlt className="text-[40px] text-red-800 bg-red-200 p-2 rounded-lg" />
                         </button>
                     </div>
 
@@ -125,4 +125,3 @@ export default CartCard;
 
 
 
- 

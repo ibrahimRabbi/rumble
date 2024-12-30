@@ -62,7 +62,7 @@ const OTPInput = ({ data, sendingOtp, setIsOpen }: { data: any, sendingOtp: numb
         const correctOtp = sendingOtp;
 
         if (enteredOtp === correctOtp) {
-            const fetching = await fetch(`http://localhost:5000/api/verify`, {
+            const fetching = await fetch(` http://localhost:5000/api/verify`, {
                 method: 'POST',
                 headers: { 'content-type': 'application/json' },
                 body: JSON.stringify(data)

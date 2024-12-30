@@ -14,7 +14,7 @@ const Rdrower = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-3" aria-label="close sidebar" className="drawer-overlay"></label>
-                    <ul className='w-[300px] space-y-1 bg-slate-50 min-h-screen pt-3 rounded-lg text-zinc-950 text-[17px] lg:z-50 absolute'>
+                    <ul className='w-[300px] space-y-1 bg-slate-50 min-h-screen pt-3 text-zinc-950 text-[17px] lg:z-50 absolute'>
                         {
                             BannerCategoryData.map((v,index) => {
                                 return (

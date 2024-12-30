@@ -11,6 +11,8 @@ import toast from 'react-hot-toast';
 import Image from 'next/image';
 import logo from '@/assets/rumble-logo.png'
 import SignInProviderBtn from '../sign-in/_wrapper/SignInProviderBtn';
+import { LuEye } from "react-icons/lu";
+import { LuEyeClosed } from "react-icons/lu";
 
 
 
@@ -25,6 +27,8 @@ const Signup = () => {
     const [signUp, { isLoading }] = useSignUpMutation()
     const [sendingOtp, setSendingOtp] = useState(0)
     const [data, setData] = useState({})
+    const [isHide, setHide] = useState(true)
+    const [isHide2, setHide2] = useState(true)
 
 
     if (isLoading) {
@@ -35,7 +39,7 @@ const Signup = () => {
 
     const submitHandler = async (value: any) => {
         const userData = { ...value, district, gender }
-        
+
         if (value.password !== value.confirmPassword) {
             toast.error('confirm doesnt match')
         } else {
@@ -55,7 +59,7 @@ const Signup = () => {
     return (
         <section>
             <Link href='/' className='inline-block mt-4 ml-2'>
-                <Image width={120} className='rounded-sm' src={logo} alt="logo" />
+                <Image width={250} className='rounded-sm w-32' src={logo} alt="logo" />
             </Link>
             <div className='lg:mt-2 mt-10 mb-10 lg:w-1/2 w-[90%] m-auto'>
                 <p className='text-[#323232] text-center text-3xl font-[700]'>Create New  Account</p>
@@ -126,13 +130,25 @@ const Signup = () => {
 
                     <div className='mt-6 lg:w-1/2 space-y-5 mx-auto'>
                         <div>
-                            <Input type='password' className='border p-2 rounded-md w-full' {...register('password', { required: true, minLength: 8 })} placeholder="password" />
+                            <div className='relative'>
+                                <Input type={isHide ? 'password' : 'text'} className='border p-2 rounded-md w-full' {...register('password', { required: true, minLength: 8 })} placeholder="confirm password" />
+                                {
+                                    isHide ? <LuEyeClosed onClick={() => setHide(!isHide)} className='absolute right-2 top-3 size-4 cursor-pointer' /> : <LuEye onClick={() => setHide(!isHide)} className='absolute right-2 top-3 size-4 cursor-pointer' />
+
+                                }
+                            </div>
                             {errors.password?.type === 'required' && <p className='text-red-500 text-sm'>password is required</p>}
                             {errors.password?.type === 'minLength' && <p className='text-red-500 text-sm'>password length minimum 8 characters</p>}
                         </div>
                         <div>
                             <div>
-                                <Input type='password' className='border p-2 rounded-md w-full' {...register('confirmPassword', { required: true, minLength: 8 })} placeholder="confirm password" />
+                                <div className='relative'>
+                                    <Input type={isHide2 ? 'password' : 'text'} className='border p-2 rounded-md w-full' {...register('confirmPassword', { required: true, minLength: 8 })} placeholder="confirm password" />
+                                    {
+                                        isHide2 ? <LuEyeClosed onClick={() => setHide2(!isHide2)} className='absolute right-2 top-3 size-4 cursor-pointer' /> : <LuEye onClick={() => setHide2(!isHide2)} className='absolute right-2 top-3 size-4 cursor-pointer' />
+
+                                    }
+                                </div>
                                 {errors.confirmPassword?.type === 'required' && <p className='text-red-500 text-sm'>confirm password is required</p>}
                                 {errors.confirmPassword?.type === 'minLength' && <p className='text-red-500 text-sm'>confirm password does not match</p>}
                             </div>

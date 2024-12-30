@@ -4,21 +4,21 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "..
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "../ui/select";
 import { Checkbox } from "../ui/checkbox";
 import { products } from "@/utils/Tools";
- 
 
-const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChecked: any, checkHandler: any, genderhandler:any, sorthandler:any}) => {
 
-    const [openItem, setOpenItem] = useState('item-1');
+const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChecked: any, checkHandler: any, genderhandler: any, sorthandler: any }) => {
+
+
     const gender = ['male', 'female', 'unisex', 'trans gender']
-    const [selectedGender,setSelecetedGender] = useState('')
-
+    const [selectedGender, setSelecetedGender] = useState('')
     
+
     return (
         <div className="border p-4">
             <div>
                 <p className="text-[16px] uppercase">Sort by :</p>
 
-                <Select onValueChange={(value)=>sorthandler(value)}>
+                <Select onValueChange={(value) => sorthandler(value)}>
                     <SelectTrigger className="w-full">
                         <SelectValue placeholder='Relevance' />
                     </SelectTrigger>
@@ -38,8 +38,8 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                         <p className="text-sm text-zinc-500">500+ Products</p>
                     </div>
                     <hr className="mt-4" />
-                    
-                    <Accordion type="single" collapsible value={openItem} onValueChange={setOpenItem} className="w-full">
+
+                    <Accordion type="single" collapsible  defaultValue='item-1' className="w-full">
 
 
                         <AccordionItem value="item-1">
@@ -47,27 +47,27 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                             <AccordionContent>
                                 <div className="space-y-5">
                                     {
-                                        products.map((product,index) => {
+                                        products.map((product, index) => {
                                             return (
-                                                <div key={index+1} className="flex gap-3 items-center text-zinc-700 text-[17px]">
+                                                <div key={index + 1} className="flex gap-3 items-center text-zinc-700 text-[17px]">
                                                     <Checkbox
-                                                        checked={isChecked === product.name? true : false}
+                                                        checked={isChecked === product.name ? true : false}
                                                         onCheckedChange={(isChecked) => checkHandler(isChecked, product)}
                                                         id={product.name}
                                                     />
-                                                <label htmlFor={product.name}>{product.name}</label>
+                                                    <label htmlFor={product.name}>{product.name}</label>
                                                 </div>
                                             )
                                         })
-                                   }
-                                      
-                                </div>    
+                                    }
+
+                                </div>
 
                             </AccordionContent>
                         </AccordionItem>
 
 
-                        <AccordionItem value="item-1">
+                        <AccordionItem value="item-2">
                             <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Gender</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
@@ -78,20 +78,15 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                                                 setSelecetedGender(v)
                                             }}
                                             key={Math.random()}
-                                            className={` ${v === selectedGender ? 'bg-green-200 text-black' :'bg-slate-200'} cursor-pointer border-2 text-zinc-900 text-[16px] px-4 py-2 rounded-md`}>{v}
+                                            className={` ${v === selectedGender ? 'bg-green-200 text-black' : 'bg-slate-200'} cursor-pointer border-2 text-zinc-900 text-[16px] px-4 py-2 rounded-md`}>{v}
                                         </p>)
-                                    } 
+                                    }
                                 </div>
                             </AccordionContent>
                         </AccordionItem>
 
 
-
-
-
-
-
-                        <AccordionItem value="item-1">
+                        <AccordionItem value="item-3">
                             <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Color</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
@@ -111,7 +106,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
 
 
 
-                        <AccordionItem value="item-1">
+                        <AccordionItem value="item-4">
                             <AccordionTrigger className="text-[1.135rem] font-semibold text-zinc-600">Size</AccordionTrigger>
                             <AccordionContent>
                                 <div className="flex flex-wrap items-center gap-4">
@@ -128,7 +123,7 @@ const Filter = ({ checkHandler, genderhandler, sorthandler, isChecked }: { isChe
                 </div>
 
 
-                
+
 
             </div>
         </div>

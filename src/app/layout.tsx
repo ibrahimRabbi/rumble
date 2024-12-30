@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Providers from "@/lib/Provider";
-
+import { GoogleTagManager } from '@next/third-parties/google'
 
 
 const geistSans = localFont({
@@ -30,14 +30,12 @@ export default function RootLayout({
   return (
     <Providers>
       <html lang="en">
-        
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           <Toaster />
           {children}
         </body>
+        <GoogleTagManager gtmId="GTM-KW5H74BS" />
       </html>
-   </Providers>
+    </Providers>
   );
 }

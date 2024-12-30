@@ -68,8 +68,8 @@ const AddToCartBtn = ({ price, id, stock }: { price: number, id: string, stock: 
 
     return (
         <div className="flex gap-8 lg:mt-12 mt-5 items-center">
-            <Button onClick={addToCartHandler} className={`p-2 btn ${stock < 1 ? 'btn-disabled' : 'enabled:'} hover:bg-red-700 rounded-lg text-white font-semibold bg-red-600 w-[45%]`}>Add To Cart</Button>
-            <Button onClick={buyNowHandler} className={`p-2 btn  hover:bg-amber-500 rounded-lg font-semibold bg-amber-400 text-slate-900 w-[45%] ${stock < 1 ? 'btn-disabled' : 'enabled:'}`}>Buy Now</Button>
+            <button onClick={addToCartHandler} className={`p-3 ${stock < 1 ? 'btn-disabled' : 'enabled:'} hover:bg-zinc-950 uppercase text-white font-semibold bg-zinc-900 text-sm w-[45%]`}>Add To Cart</button>
+            <button onClick={buyNowHandler} className={`p-3 text-sm hover:bg-amber-500 font-semibold uppercase bg-amber-400 text-slate-900 w-[45%] ${stock < 1 ? 'btn-disabled' : 'enabled:'}`}>Buy Now</button>
         </div>
     );
 };

@@ -19,7 +19,7 @@ const SignIn = () => {
        
             <section>
                 <Link href='/' className='inline-block mt-4 ml-2'>
-                    <Image className='w-40 rounded-sm' width={250} height={80} src={logo} alt="logo" />
+                    <Image className='w-32 rounded-sm' width={250} height={80} src={logo} alt="logo" />
                 </Link>
                 <div className='lg:mt-10 mt-16'>
 
@@ -35,7 +35,7 @@ const SignIn = () => {
                         <div className='mt-6 lg:w-1/2  mx-auto'>
                             <p className='text-[#323232] text-center text-2xl font-[700]'>Sign in to your Account</p>
                             <FXInput />
-                            <input type="submit" value='Login' className='bg-[#ECE64A] cursor-pointer hover:bg-[#dfd936] p-2 mt-8 rounded-lg font-semibold w-full mx-auto block' />
+                            <input type="submit" value='Login' className='bg-[#ECE64A] cursor-pointer hover:bg-[#dfd936] p-2 mt-20 rounded-lg font-semibold w-full mx-auto block' />
                         </div>
                     </FxForm>
 

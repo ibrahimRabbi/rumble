@@ -35,7 +35,14 @@ export type DeliverAddress = {
 const page = () => {
 
     const [isOpen, setIsOpen] = useState(false)
-    const [details, setDetails] = useState({})
+    const [details, setDetails] = useState<DeliverAddress>({
+    name: '',
+    phone: '',
+    address: '',
+    district: '',
+    isSelect: false,
+    _id:''
+})
     const [isChecked, setChecked] = useState(false)
     const [deleteaddress, { }] = useDeleteAddressMutation()
     const dispatch = useAppDispatch()
@@ -70,17 +77,14 @@ const page = () => {
         }
     }
 
-    // if (isLoading) {
-    //     return <h1 className='text-2xl flex justify-center mt-10'>Loading...</h1>
-    // }
-
+   
 
     return (
        
             <section className='lg:w-[90%] min-h-screen mx-auto lg:my-8'>
                 {/* responsive */}
             <Suspense fallback={<p className='text-2xl'>loading...</p>}>
-                <RprocedToPay shippingDetails={details as DeliverAddress} />
+                <RprocedToPay price={price} ProductId={productId} shippingDetails={details as DeliverAddress} />
             </Suspense>
 
                 <p className='text-[#493115] text-lg lg:mt-0 mt-8 font-semibold lg:text-start text-center'>Choose a shipping Address & Details</p>
@@ -107,7 +111,7 @@ const page = () => {
 
                                                 <div key={v?._id} className='flex items-center justify-between rounded-md bg-green-50 mt-3 p-3'>
                                                     <div className='flex items-center gap-2'>
-                                                        <Checkbox onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
+                                                        <Checkbox checked={v.district === details.district? true: false} onCheckedChange={(chacked) => pickDetails(v, chacked as boolean)} />
 
                                                         <p className='font-semibold'>{v?.name}</p>
                                                         <p className=''>{v?.phone}</p>

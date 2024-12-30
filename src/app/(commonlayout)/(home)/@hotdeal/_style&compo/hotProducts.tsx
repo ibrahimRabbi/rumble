@@ -8,10 +8,8 @@ import { FreeMode, Navigation } from 'swiper/modules';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { FaRegEye } from 'react-icons/fa';
-import Image from 'next/image';
-import nextBtn from '@/assets/icons/Right.png';
-import back from '@/assets/icons/Back.png'
 import './hotDeal.css'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 
 
@@ -29,7 +27,7 @@ const HotProducts = ({ data }: { data: object[] }) => {
         <div>
             <div className='flex mt-5 justify-between gap-5 items-center'>
                 <button className='hidden lg:block' onClick={() => swiperRef.current?.slidePrev()}>
-                    <Image width={130} src={back} alt='back' />
+                    <IoIosArrowBack className='size-10 text-gray-600 bg-gray-200 p-1 rounded-full' />
                 </button>
 
 
@@ -73,12 +71,18 @@ const HotProducts = ({ data }: { data: object[] }) => {
                 </Swiper>
 
 
-                <button className='hidden lg:block' onClick={() => swiperRef.current?.slideNext()}><Image width={130} src={nextBtn} alt='next' /></button>
+                <button className='hidden lg:block' onClick={() => swiperRef.current?.slideNext()}>
+                    <IoIosArrowForward className='size-10 text-gray-600 bg-gray-200 p-1 rounded-full' />
+                </button>
             </div>
 
-            <div className='lg:hidden flex justify-center gap-10 mt-2 items-center'>
-                <button onClick={() => swiperRef.current?.slidePrev()}><Image width={70} src={back} alt='back' /></button>
-                <button onClick={() => swiperRef.current?.slideNext()}><Image width={70} src={nextBtn} alt='next' /></button>
+            <div className='lg:hidden flex justify-center gap-14 mt-5 items-center'>
+                <button onClick={() => swiperRef.current?.slidePrev()}>
+                    <IoIosArrowBack className='size-10 text-gray-600 bg-gray-200 p-1 rounded-full' />
+                </button>
+                <button onClick={() => swiperRef.current?.slideNext()}>
+                    <IoIosArrowForward className='size-10 text-gray-600 bg-gray-200 p-1 rounded-full' />
+                </button>
             </div>
         </div>
 

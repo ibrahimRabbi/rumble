@@ -11,12 +11,12 @@ const Size = ({ sizes }:{sizes:string[]}) => {
     
     
     return (
-        <div className='mt-5'>
-            <p className='font-semibold text-[17px] text-zinc-700'>Available Sizes:</p>
-            <div className='flex mt-1 flex-wrap gap-4'>
+        <div className='mt-12'>
+            <p className='text-sm text-zinc-800'>Select Size:</p>
+            <div className='flex mt-1  flex-wrap gap-4'>
                 {sizes?.map((v,index) => {
                     return (
-                        <p key={index+1} onClick={()=>dispatch(sizeHandler(v as any))} className={`${size === v ? 'bg-green-300 text-black font-normal' : 'text-zinc-600'} border cursor-pointer font-semibold py-2 px-4 text-[16px] rounded-lg`}>
+                        <p key={index + 1} onClick={() => dispatch(sizeHandler(v as any))} className={`${size === v ? 'bg-zinc-900 text-white font-normal' : 'text-zinc-800'} px-5 py-1 border border-zinc-500 cursor-pointer text-[14px]`}>
                             {v}
                         </p>
                     )

@@ -34,10 +34,10 @@ const layout = ({ children }: { children: ReactNode }) => {
 
                     <div className="drawer-content lg:ml-12 mt-5 lg:mt-10 lg:w-[85%] w-[92%] mx-auto"> 
                         <div className="flex justify-between items-center lg:hidden">
-                            <Image src={logo} width={100} alt='logo'/>
+                            <Image src={logo} width={130} alt='logo'/>
                             <label htmlFor="my-drawer-2">
                                 <div className="bg-green-50 border border-green-400 p-1 rounded-md">
-                                    <AiOutlineBars className="size-8 text-green-600" />
+                                    <AiOutlineBars className="size-5 text-green-600" />
                                 </div>
                             </label>
                         </div>

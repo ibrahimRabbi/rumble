@@ -26,7 +26,7 @@ const LeftComponent = () => {
     return (
         <div className=" w-[40%] gap-10 hidden lg:flex items-center justify-end">
             <div className="relative w-64">
-                <Input onChange={searchHandler} className="w-full" placeholder="search..." />
+                <Input onChange={searchHandler} className="w-full focus:border-0" placeholder="search..." />
                 <IoSearch className="absolute top-3 right-2 z-10" />
             </div>
 
@@ -46,7 +46,7 @@ const LeftComponent = () => {
 
             </Link>
 
-            <Link className="flex items-center gap-1" href={user?.success ? '/dashboard/user/profile' : `auth/sign-in?redirect=/dashboard/user/profile`}>
+            <Link className="flex items-center gap-1" href={user?.success ? '/dashboard/user/profile' : `/auth/sign-in?redirect=/dashboard/user/profile`}>
                 <FaRegUser className="text-[22px]" />
                 <p className="text-sm lowercase">{separate ? separate[1] : ''}</p>
             </Link>

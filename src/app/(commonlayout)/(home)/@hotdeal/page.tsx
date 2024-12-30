@@ -5,7 +5,7 @@ import HotProducts from './_style&compo/hotProducts';
 
 const HotDeal = async () => {
 
-    const fetching = await fetch("http://localhost:5000/api/products/get-products?deal=true&limit=20")
+    const fetching = await fetch(" http://localhost:5000/api/products/get-products?deal=true&limit=20")
     const { response } = await fetching.json()
 
 

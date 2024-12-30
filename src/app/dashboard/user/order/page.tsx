@@ -23,7 +23,7 @@ const page = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/api/order/get-order`, {
+        fetch(` http://localhost:5000/api/order/get-order`, {
             method: 'GET',
             headers: { 'authorization': token as string },
         })
@@ -33,7 +33,7 @@ const page = () => {
 
 
     const searchHandler = async (value: any) => {
-        const fetching = await fetch(`http://localhost:5000/api/order/get-order?search=${value.target.value}`, {
+        const fetching = await fetch(` http://localhost:5000/api/order/get-order?search=${value.target.value}`, {
             method: 'GET',
             headers: { 'authorization': token as string },
         })

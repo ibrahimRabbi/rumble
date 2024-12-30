@@ -2,7 +2,9 @@ import { Tcart } from '@/components/cart/AddToCartBtn'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { getCookie } from 'cookies-next/client'
 
-// https://rumble-server.vercel.app/api
+//https://rumble-server.vercel.app/api
+//  http://localhost:5000
+
 
 export const baseApi = createApi({
     reducerPath: 'baseApi',

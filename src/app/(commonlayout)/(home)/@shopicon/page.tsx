@@ -17,7 +17,7 @@ const ShopIcon = () => {
 
     useEffect(() => {
         setloading(true)
-        fetch(`http://localhost:5000/api/products/get-products?limit=12`)
+        fetch(` http://localhost:5000/api/products/get-products?limit=12`)
             .then(res => res.json())
             .then(res => {
                 setData(res?.response)
@@ -59,7 +59,7 @@ const ShopIcon = () => {
     }
 
     const genderhandler = async (gender: string) => {
-        const fetching = await fetch(`http://localhost:5000/api/products/get-products?gender=${gender}`)
+        const fetching = await fetch(` http://localhost:5000/api/products/get-products?gender=${gender}`)
         const { response } = await fetching.json()
         setData([...response] as any)
     }
@@ -68,7 +68,7 @@ const ShopIcon = () => {
     const checkHandler = async (isChecked: boolean, value: any) => {
         setloading(true)
         if (isChecked) {
-            const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
+            const fetchingdata = await fetch(` http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
             const { response } = await fetchingdata.json()
             setData(response)
             setIsChecked(value.name)

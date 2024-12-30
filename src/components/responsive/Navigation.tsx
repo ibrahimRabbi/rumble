@@ -47,7 +47,7 @@ const Navigation = () => {
                 <IoMdHeartEmpty className="size-7" />
                 <p className="text-sm">favoruit</p>
             </Link>
-            <Link className={`${path == '/dashboard/user/profile' ? 'bg-green-800' : ''} flex flex-col justify-center items-center`} href={user?.success ? '/dashboard/user/profile' : `auth/sign-in?redirect=/dashboard/user/profile`}>
+            <Link className={`${path == '/dashboard/user/profile' ? 'bg-green-800' : ''} flex flex-col justify-center items-center`} href={user?.success ? '/dashboard/user/profile' : `/auth/sign-in?redirect=/dashboard/user/profile`}>
                 <FiUser className="size-7 text-zinc-800" />
                 <p className="lowercase text-sm">{separate ? separate[1] : 'account'}</p>
             </Link>

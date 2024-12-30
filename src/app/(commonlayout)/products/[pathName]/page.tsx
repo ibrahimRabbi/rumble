@@ -25,7 +25,7 @@ const page = () => {
     useEffect(() => {
         setIsLoading(true)
         if (path.pathName === 'search' && queryData) {
-            fetch(`http://localhost:5000/api/products/get-products?search=${queryData}`)
+            fetch(` http://localhost:5000/api/products/get-products?search=${queryData}`)
                 .then(res => res.json())
                 .then(res => {
                     setData(res?.response)
@@ -33,7 +33,7 @@ const page = () => {
                 })
         }
         if (path.pathName === 'category' && queryData) {
-            fetch(`http://localhost:5000/api/products/get-products?category=${queryData}`)
+            fetch(` http://localhost:5000/api/products/get-products?category=${queryData}`)
                 .then(res => res.json())
                 .then(res => {
                     setData(res?.response)
@@ -42,7 +42,7 @@ const page = () => {
         }
 
         if (!queryData) {
-            fetch(`http://localhost:5000/api/products/get-products?limit=12`)
+            fetch(` http://localhost:5000/api/products/get-products?limit=12`)
                 .then(res => res.json())
                 .then(res => {
                     setData(res?.response)
@@ -56,7 +56,7 @@ const page = () => {
     const checkHandler = async (isChecked: boolean, value: any) => {
         setIsLoading(true)
         if (isChecked) {
-            const fetchingdata = await fetch(`http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
+            const fetchingdata = await fetch(` http://localhost:5000/api/products/get-products/product?category=${value.category}&subcategory=${value.subCategory}`)
             const { response } = await fetchingdata.json()
             setIsChecked(value.name)
             setData(response)
@@ -99,7 +99,7 @@ const page = () => {
 
     const genderhandler = async (gender: string) => {
         setIsLoading(true)
-        const fetching = await fetch(`http://localhost:5000/api/products/get-products?gender=${gender}`)
+        const fetching = await fetch(` http://localhost:5000/api/products/get-products?gender=${gender}`)
         const { response } = await fetching.json()
         setData([...response] as any)
         setIsLoading(false)
